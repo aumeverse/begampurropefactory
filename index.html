@@ -32,28 +32,28 @@
     }
     </script>
 
-    <!-- Google Fonts: Space Grotesk (Headers) & Outfit (UI/Body) -->
+    <!-- Google Fonts: Plus Jakarta Sans (Clean, Professional, Industry Grade) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- CSS Styles -->
     <style>
         :root {
             --color-primary: #0A1E3D;     /* Deep B2B Space Navy */
             --color-secondary: #1A5FA8;   /* Steel Blue */
-            --color-accent: #E87722;      /* Industrial Copper Orange */
-            --color-accent-hover: #D0661A;
-            --color-bg: #F7F8FA;          /* Premium Cool Off-White background */
+            --color-accent: #A83232;      /* Premium B2B Muted Red */
+            --color-accent-hover: #8F2626;
+            --color-accent-shadow: #732222;
+            --color-bg: #FAF9F6;          /* Alabaster Warm White background */
             --color-surface: #FFFFFF;     /* Solid White cards/headers for depth */
             --color-dark: #071427;        /* Ultra Deep Space Navy */
             --color-text: #1C1C1C;
             --color-muted: #6B7280;
             --color-border: #E5E7EB;
             --color-success: #10B981;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Outfit', sans-serif;
-            --max-width: 1200px;
+            --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 1440px;          /* Expanded desktop layout limit */
             --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -68,7 +68,7 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-family);
             color: var(--color-text);
             background-color: var(--color-bg);
             line-height: 1.6;
@@ -78,7 +78,7 @@
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 2.5rem; /* Spacious desktop padding */
         }
 
         .section-padding {
@@ -89,77 +89,130 @@
             text-align: center;
         }
 
+        /* Interactive Blinking/Sliding Section Tag Headers */
         .section-tag {
             display: inline-flex;
             align-items: center;
+            position: relative;
             color: var(--color-accent);
-            font-family: var(--font-display);
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             margin-bottom: 1.25rem;
-            border-left: 3px solid var(--color-accent);
-            padding-left: 0.85rem;
             line-height: 1;
+            padding-left: 12px;
         }
 
+        .section-tag::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: var(--color-accent);
+            opacity: 1; /* Default to visible for non-animated layers */
+        }
+
+        .section-tag span {
+            display: inline-block;
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Reveal specific scroll setups */
+        .scroll-reveal .section-tag::before {
+            opacity: 0;
+        }
+
+        .scroll-reveal .section-tag span {
+            opacity: 0;
+            transform: translateX(-15px);
+        }
+
+        .scroll-reveal.revealed .section-tag::before {
+            animation: borderBlink 1s forwards steps(2, start);
+        }
+
+        .scroll-reveal.revealed .section-tag span {
+            transform: translateX(0);
+            opacity: 1;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s ease;
+            transition-delay: 1s; /* Starts after blinking ends */
+        }
+
+        @keyframes borderBlink {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            40% { opacity: 0; }
+            60% { opacity: 1; }
+            80% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Interactive Scroll-Reveal classes */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tactical 3D Buttons & Animations */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 0.85rem 2.2rem;
-            font-family: var(--font-display);
             font-weight: 600;
             font-size: 0.95rem;
             border-radius: 4px;
             cursor: pointer;
-            transition: var(--transition-smooth);
             text-decoration: none;
             border: none;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: var(--color-primary);
-            z-index: -1;
-            transition: var(--transition-smooth);
+            transform: translateY(0);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
         }
 
         .btn-primary {
             background-color: var(--color-accent);
             color: var(--color-bg);
-            box-shadow: 0 4px 10px rgba(232, 119, 34, 0.15);
+            box-shadow: 0 4px 0 var(--color-accent-shadow);
         }
 
         .btn-primary:hover {
-            color: var(--color-bg);
+            background-color: var(--color-accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(10, 30, 61, 0.25);
+            box-shadow: 0 6px 0 var(--color-accent-shadow);
         }
 
-        .btn-primary:hover::after {
-            height: 100%;
+        .btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 var(--color-accent-shadow);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: #FFFFFF;
             border: 2px solid #FFFFFF;
+            box-shadow: 0 4px 0 rgba(255, 255, 255, 0.3);
         }
 
         .btn-secondary:hover {
-            background-color: #FFFFFF;
-            color: var(--color-primary);
+            background-color: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
+            box-shadow: 0 6px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
         /* SPA Pages Visibility */
@@ -181,7 +234,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.96);
+            background-color: rgba(250, 249, 246, 0.96); /* Matches Alabaster bg */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border);
@@ -197,23 +250,43 @@
 
         .logo-block {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             text-decoration: none;
+            gap: 0.75rem;
+        }
+
+        .logo-placeholder {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1.5px dashed var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            transition: var(--transition-smooth);
+        }
+
+        .logo-block:hover .logo-placeholder {
+            transform: rotate(15deg) scale(1.05);
         }
 
         .logo-title {
             color: var(--color-primary);
-            font-family: var(--font-display);
-            font-size: 1.45rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            font-size: 1.2rem;
+            font-weight: 800; /* Extra bold compact Brand title */
+            letter-spacing: -0.03em;
             line-height: 1.2;
         }
 
         .logo-tagline {
             color: var(--color-muted);
-            font-size: 0.72rem;
-            font-weight: 500;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .nav-links {
@@ -230,7 +303,6 @@
         .nav-link {
             text-decoration: none;
             color: var(--color-text);
-            font-family: var(--font-display);
             font-weight: 500;
             font-size: 0.92rem;
             transition: var(--transition-smooth);
@@ -397,16 +469,6 @@
             justify-content: center;
         }
 
-        .hero-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
         .hero-slide {
             position: absolute;
             top: 50%;
@@ -422,66 +484,55 @@
             pointer-events: auto;
         }
 
+        /* Thin black border styling for white hero text */
         .hero-title {
-            font-family: var(--font-display);
             font-size: 5rem;
             font-weight: 700;
             line-height: 0.95;
             letter-spacing: -0.015em;
             margin-bottom: 1.25rem;
+            -webkit-text-stroke: 0.5px #000000;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000, 0 4px 12px rgba(0,0,0,0.5);
         }
 
         .hero-subheadline {
             font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2.25rem;
             max-width: 520px;
-            font-weight: 400;
+            font-weight: 500;
+            -webkit-text-stroke: 0.2px #000000;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000, 0 2px 4px rgba(0,0,0,0.4);
         }
 
         .hero-slide-actions {
             display: flex;
-            gap: 1rem;
+            gap: 1.25rem;
             flex-wrap: wrap;
         }
 
+        /* Minimalist dots: simple line indicators */
         .slide-dots {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 1.25rem;
+            gap: 0.75rem;
             z-index: 2;
         }
 
         .slide-dot-item {
-            font-family: var(--font-display);
-            font-size: 2.25rem;
-            color: rgba(255, 255, 255, 0.3);
+            font-size: 0; /* hides number values */
+            width: 16px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.35);
             cursor: pointer;
             transition: var(--transition-smooth);
-            position: relative;
-            line-height: 1;
-        }
-
-        .slide-dot-item::after {
-            content: '';
-            position: absolute;
-            right: -25px;
-            top: 50%;
-            width: 15px;
-            height: 2px;
-            background-color: var(--color-accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition-smooth);
+            border-radius: 99px;
         }
 
         .slide-dot-item.active {
-            color: var(--color-accent);
-        }
-
-        .slide-dot-item.active::after {
-            transform: scaleX(1);
+            background-color: var(--color-accent);
+            width: 32px; /* Expands when active */
         }
 
         /* Continuous Sliding Marquee Category Strip */
@@ -511,7 +562,6 @@
         }
 
         .category-item {
-            font-family: var(--font-display);
             font-size: 1.1rem;
             letter-spacing: 0.05em;
             color: rgba(255, 255, 255, 0.7);
@@ -549,7 +599,6 @@
         }
 
         .slider-headline {
-            font-family: var(--font-display);
             font-size: 2.5rem;
             color: var(--color-primary);
             font-weight: 700;
@@ -589,9 +638,12 @@
             position: relative;
         }
 
+        /* Prevent wrapping on the track to maintain slider card layout */
         .slider-track {
             display: flex;
+            flex-wrap: nowrap;
             gap: 1.5rem;
+            align-items: stretch; /* equal height cards */
             transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: grab;
             user-select: none;
@@ -634,7 +686,6 @@
 
         .card-visual strong {
             color: var(--color-primary);
-            font-family: var(--font-display);
             font-size: 1rem;
             margin-bottom: 0.35rem;
             z-index: 2;
@@ -654,7 +705,6 @@
         }
 
         .card-title {
-            font-family: var(--font-display);
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -673,7 +723,6 @@
             align-items: center;
             justify-content: center;
             padding: 0.65rem 1rem;
-            font-family: var(--font-display);
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--color-primary);
@@ -707,6 +756,7 @@
             color: var(--color-primary);
             cursor: pointer;
             transition: var(--transition-smooth);
+            align-self: stretch; /* equal height */
         }
 
         .slider-view-all-card:hover {
@@ -728,7 +778,6 @@
         }
 
         .slider-view-all-card h3 {
-            font-family: var(--font-display);
             font-size: 1.15rem;
             font-weight: 600;
             letter-spacing: 0.05em;
@@ -773,7 +822,6 @@
         .toggle-btn {
             background: none;
             border: none;
-            font-family: var(--font-display);
             font-size: 1rem;
             font-weight: 600;
             color: var(--color-muted);
@@ -897,7 +945,6 @@
         }
 
         .journey-year {
-            font-family: var(--font-display);
             font-weight: 700;
             color: var(--color-primary);
             font-size: 1.25rem;
@@ -919,11 +966,12 @@
             gap: 1.5rem;
         }
 
+        /* Compacted Value Cards to resolve huge layout boxes */
         .value-card {
             background-color: #FFFFFF;
             border: 1px solid var(--color-border);
             border-radius: 4px;
-            padding: 1.75rem;
+            padding: 1.15rem 1.25rem; /* Compact padding */
             transition: var(--transition-smooth);
             position: relative;
         }
@@ -935,7 +983,7 @@
             }
             25% {
                 border-color: var(--color-accent);
-                box-shadow: 0 0 15px rgba(232, 119, 34, 0.15);
+                box-shadow: 0 0 15px rgba(168, 50, 50, 0.15);
             }
         }
 
@@ -958,23 +1006,21 @@
 
         .value-card-marker {
             color: var(--color-accent);
-            font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
             display: block;
         }
 
         .value-title {
-            font-family: var(--font-display);
             font-weight: 700;
             color: var(--color-primary);
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
         }
 
         .value-desc {
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             color: var(--color-muted);
         }
 
@@ -987,7 +1033,6 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: var(--font-display);
             font-weight: 600;
             font-size: 0.9rem;
             color: var(--color-primary);
@@ -1007,8 +1052,10 @@
             border-bottom: 1px solid var(--color-border);
         }
 
+        /* Prevent wrapping on the track to maintain solutions slider card layout */
         .solutions-track {
             display: flex;
+            flex-wrap: nowrap;
             gap: 1.5rem;
             transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: grab;
@@ -1019,9 +1066,10 @@
             cursor: grabbing;
         }
 
+        /* STRICT 4:3 Aspect Ratio Cards (320px width, 240px height) */
         .solution-card {
-            flex: 0 0 300px;
-            height: 400px;
+            flex: 0 0 320px;
+            height: 240px;
             border-radius: 4px;
             position: relative;
             overflow: hidden;
@@ -1030,10 +1078,10 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.25rem;
             color: #FFFFFF;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            background: none; /* remove background fill so images shine */
+            background: none;
         }
 
         .solution-card:hover {
@@ -1092,21 +1140,21 @@
         }
 
         .solution-card:hover .solution-card-overlay {
-            background: linear-gradient(to top, rgba(232,119,34,0.95) 0%, rgba(232,119,34,0.4) 60%, transparent 100%);
+            background: linear-gradient(to top, rgba(168,50,50,0.95) 0%, rgba(168,50,50,0.4) 60%, transparent 100%);
         }
 
         .solution-card-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            line-height: 1;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.45rem;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
             letter-spacing: -0.01em;
         }
 
         .solution-card-desc {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.85);
+            line-height: 1.3;
         }
 
         /* GLOBAL NETWORK */
@@ -1122,13 +1170,36 @@
             align-items: center;
         }
 
+        /* Animated sliding red underline under global network title */
         .network-title {
-            font-family: var(--font-display);
             font-size: 3rem;
             color: var(--color-primary);
             font-weight: 700;
             line-height: 1.1;
+            position: relative;
+            padding-bottom: 15px;
             margin-bottom: 1.5rem;
+        }
+
+        .network-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 120px;
+            height: 3.5px;
+            background-color: var(--color-accent);
+            border-radius: 999px;
+            animation: slideLeftRight 4s infinite ease-in-out;
+        }
+
+        @keyframes slideLeftRight {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(110px);
+            }
         }
 
         .network-desc {
@@ -1187,25 +1258,11 @@
             height: 100%;
         }
 
-        /* CONNECT SECTION */
+        /* CONNECT SECTION - Restructured layout putting information after form details */
         .connect-section {
             background-color: var(--color-dark);
             color: #A0B2C6;
             border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .connect-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 4rem;
-        }
-
-        .connect-info h3 {
-            color: #FFFFFF;
-            font-family: var(--font-display);
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
         }
 
         .connect-form-card {
@@ -1213,13 +1270,15 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 4px;
             padding: 2.5rem;
+            max-width: 650px;
+            margin: 0 auto;
         }
 
         .connect-form-card h4 {
             color: #FFFFFF;
-            font-family: var(--font-display);
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
+            text-align: center;
         }
 
         .connect-control {
@@ -1298,7 +1357,6 @@
         }
 
         .solution-detail-headline {
-            font-family: var(--font-display);
             font-size: 4rem;
             line-height: 1;
         }
@@ -1334,7 +1392,6 @@
         }
 
         .sol-prod-title {
-            font-family: var(--font-display);
             font-weight: 700;
             font-size: 1.05rem;
             color: var(--color-primary);
@@ -1481,7 +1538,6 @@
 
         .product-visual-wrapper strong {
             color: var(--color-primary);
-            font-family: var(--font-display);
             font-size: 0.95rem;
         }
 
@@ -1498,7 +1554,6 @@
         }
 
         .product-card-title {
-            font-family: var(--font-display);
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -1517,7 +1572,6 @@
             align-items: center;
             justify-content: center;
             padding: 0.65rem 1rem;
-            font-family: var(--font-display);
             font-size: 0.82rem;
             font-weight: 600;
             color: var(--color-primary);
@@ -1575,7 +1629,6 @@
         }
 
         .solutions-directory-title {
-            font-family: var(--font-display);
             font-size: 1.35rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -1590,7 +1643,6 @@
         }
 
         .solutions-directory-btn {
-            font-family: var(--font-display);
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--color-accent);
@@ -1615,7 +1667,6 @@
         }
 
         .vision-header h2 {
-            font-family: var(--font-display);
             font-size: 2.5rem;
             font-weight: 700;
             line-height: 1.2;
@@ -1656,9 +1707,9 @@
         }
 
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(232, 119, 34, 0.45); transform: scale(1); }
-            50% { box-shadow: 0 0 0 6px rgba(232, 119, 34, 0); transform: scale(1.08); }
-            100% { box-shadow: 0 0 0 0 rgba(232, 119, 34, 0); transform: scale(1); }
+            0% { box-shadow: 0 0 0 0 rgba(168, 50, 50, 0.45); transform: scale(1); }
+            50% { box-shadow: 0 0 0 6px rgba(168, 50, 50, 0); transform: scale(1.08); }
+            100% { box-shadow: 0 0 0 0 rgba(168, 50, 50, 0); transform: scale(1); }
         }
 
         .timeline-dot {
@@ -1676,7 +1727,6 @@
         }
 
         .timeline-item-title {
-            font-family: var(--font-display);
             font-weight: 700;
             font-size: 1.15rem;
             margin-bottom: 0.25rem;
@@ -1756,7 +1806,6 @@
         }
 
         .drawer-title {
-            font-family: var(--font-display);
             font-size: 1.65rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -1796,7 +1845,6 @@
         .form-control {
             width: 100%;
             padding: 0.8rem 0.95rem;
-            font-family: var(--font-body);
             font-size: 0.9rem;
             color: var(--color-text);
             background-color: #FFFFFF;
@@ -1808,7 +1856,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--color-accent);
-            box-shadow: 0 0 0 3px rgba(232, 119, 34, 0.1);
+            box-shadow: 0 0 0 3px rgba(168, 50, 50, 0.1);
         }
 
         select.form-control {
@@ -1876,7 +1924,6 @@
         }
 
         .modal-headline {
-            font-family: var(--font-display);
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -1907,7 +1954,6 @@
 
         .footer-column-title {
             color: #FFFFFF;
-            font-family: var(--font-display);
             font-size: 0.95rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -1970,17 +2016,6 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.8rem;
-        }
-
-        .footer-bottom-strip a {
-            color: #FFFFFF;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-        }
-
-        .footer-bottom-strip a:hover {
-            color: var(--color-accent);
         }
 
         /* WHATSAPP FLOAT */
@@ -2057,6 +2092,7 @@
             }
         }
 
+        /* STRATEGIC PHONE VIEW OVERRIDES */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -2096,14 +2132,97 @@
                 display: block;
             }
 
+            /* Uncropped Proportional Mobile Hero placing text nicely at the top overlay */
+            .hero-section {
+                height: 380px;
+                min-height: unset;
+                display: flex;
+                align-items: center;
+                padding: 0 1.25rem;
+            }
+
+            .hero-bg-slides {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -2;
+            }
+
+            .hero-bg-slide {
+                background-size: cover;
+                background-position: center;
+            }
+
+            .hero-grid {
+                display: block;
+                width: 100%;
+            }
+
+            .hero-content {
+                height: auto;
+                padding: 0;
+            }
+
+            .hero-slide {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                opacity: 0;
+                pointer-events: none;
+                display: block;
+            }
+
+            .hero-slide.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
             .hero-title {
-                font-size: 2.25rem !important;
-                line-height: 1.1;
+                font-size: 1.85rem !important;
+                line-height: 1.2;
+                margin-bottom: 0.75rem;
             }
 
             .hero-subheadline {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
+                font-size: 0.85rem;
+                margin-bottom: 1.25rem;
+                max-width: 100%;
+            }
+
+            .slide-dots {
+                display: none;
+            }
+
+            /* Mobile button scaling: Thin and compact */
+            .hero-slide-actions .btn {
+                padding: 0.55rem 1.2rem;
+                font-size: 0.8rem;
+                box-shadow: 0 3px 0 var(--color-accent-shadow);
+            }
+            .hero-slide-actions .btn-secondary {
+                box-shadow: 0 3px 0 rgba(255,255,255,0.25);
+            }
+            .hero-slide-actions .btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 0 var(--color-accent-shadow);
+            }
+            .hero-slide-actions .btn-secondary:hover {
+                box-shadow: 0 4px 0 rgba(255,255,255,0.3);
+            }
+            .hero-slide-actions .btn:active {
+                transform: translateY(1px);
+                box-shadow: 0 1px 0 var(--color-accent-shadow);
+            }
+
+            /* Thinner sliding marquee below hero on mobile */
+            .hero-category-strip {
+                padding: 0.6rem 0;
+            }
+            .category-item {
+                font-size: 0.85rem;
             }
 
             .slider-headline {
@@ -2163,7 +2282,7 @@
             }
 
             .hero-title {
-                font-size: 2rem !important;
+                font-size: 1.7rem !important;
             }
 
             .products-grid, .products-view-grid, .solutions-directory-grid {
@@ -2186,8 +2305,12 @@
     <header>
         <div class="container nav-container">
             <a href="#home" class="logo-block">
-                <span class="logo-title">BEGAMPUR ROPE CENTER</span>
-                <span class="logo-tagline">Est. 2010 | Hooghly, India</span>
+                <!-- Small layout space on the left for logo png -->
+                <div class="logo-placeholder">BRC</div>
+                <div style="display: flex; flex-direction: column;">
+                    <span class="logo-title">BEGAMPUR ROPE CENTER</span>
+                    <span class="logo-tagline">Est. 2010 | Hooghly, India</span>
+                </div>
             </a>
             
             <ul class="nav-links" id="navLinks">
@@ -2252,13 +2375,12 @@
                         
                         <!-- Slide 1 -->
                         <div class="hero-slide active" data-index="0">
-                            <span class="hero-label">Begampur Rope Center</span>
                             <h1 class="hero-title">STRENGTH THAT<br>CROSSES BORDERS.</h1>
                             <p class="hero-subheadline">
                                 Engineering ropes trusted across global industries, built to perform today and sustain tomorrow.
                             </p>
                             <div class="hero-slide-actions">
-                                <button class="btn btn-primary enquire-trigger">Enquire Now</button>
+                                <a href="#solutions" class="btn btn-primary">Our Solutions</a>
                                 <a href="https://wa.me/918071792828" target="_blank" rel="noopener" class="btn btn-secondary">
                                     WhatsApp Us
                                 </a>
@@ -2267,13 +2389,12 @@
 
                         <!-- Slide 2 -->
                         <div class="hero-slide" data-index="1">
-                            <span class="hero-label">Begampur Rope Center</span>
                             <h1 class="hero-title">WEAVING A<br>STRONGER TOMORROW.</h1>
                             <p class="hero-subheadline">
                                 Responsible manufacturing processes for a safer, stronger, and more sustainable industrial future.
                             </p>
                             <div class="hero-slide-actions">
-                                <button class="btn btn-primary enquire-trigger">Enquire Now</button>
+                                <a href="#solutions" class="btn btn-primary">Our Solutions</a>
                                 <a href="https://wa.me/918071792828" target="_blank" rel="noopener" class="btn btn-secondary">
                                     WhatsApp Us
                                 </a>
@@ -2282,13 +2403,12 @@
 
                         <!-- Slide 3 -->
                         <div class="hero-slide" data-index="2">
-                            <span class="hero-label">Begampur Rope Center</span>
                             <h1 class="hero-title">TRUST, WOVEN INTO<br>EVERY STRAND.</h1>
                             <p class="hero-subheadline">
                                 Reliable, high-tensile rope solutions engineered to withstand the toughest marine and heavy loads.
                             </p>
                             <div class="hero-slide-actions">
-                                <button class="btn btn-primary enquire-trigger">Enquire Now</button>
+                                <a href="#solutions" class="btn btn-primary">Our Solutions</a>
                                 <a href="https://wa.me/918071792828" target="_blank" rel="noopener" class="btn btn-secondary">
                                     WhatsApp Us
                                 </a>
@@ -2297,13 +2417,12 @@
 
                         <!-- Slide 4 -->
                         <div class="hero-slide" data-index="3">
-                            <span class="hero-label">Begampur Rope Center</span>
                             <h1 class="hero-title">ENGINEERED TO HOLD.<br>BUILT TO LAST.</h1>
                             <p class="hero-subheadline">
                                 Precision-crafted synthetic fiber cordage delivering maximum breaking limits under critical tension.
                             </p>
                             <div class="hero-slide-actions">
-                                <button class="btn btn-primary enquire-trigger">Enquire Now</button>
+                                <a href="#solutions" class="btn btn-primary">Our Solutions</a>
                                 <a href="https://wa.me/918071792828" target="_blank" rel="noopener" class="btn btn-secondary">
                                     WhatsApp Us
                                 </a>
@@ -2312,11 +2431,12 @@
 
                     </div>
                     
+                    <!-- Line indicators instead of text numbers -->
                     <div class="slide-dots" id="slideDots">
-                        <span class="slide-dot-item active" data-go="0">01</span>
-                        <span class="slide-dot-item" data-go="1">02</span>
-                        <span class="slide-dot-item" data-go="2">03</span>
-                        <span class="slide-dot-item" data-go="3">04</span>
+                        <span class="slide-dot-item active" data-go="0"></span>
+                        <span class="slide-dot-item" data-go="1"></span>
+                        <span class="slide-dot-item" data-go="2"></span>
+                        <span class="slide-dot-item" data-go="3"></span>
                     </div>
                 </div>
 
@@ -2340,18 +2460,15 @@
                 </div>
             </section>
 
-            <!-- 2. ABOUT US SECTION (REPOSITIONED DIRECTLY AFTER HERO SECTION) -->
-            <section class="about-section section-padding" id="about">
+            <!-- 2. ABOUT US SECTION -->
+            <section class="about-section section-padding scroll-reveal" id="about">
                 <div class="container about-grid">
                     <div class="about-info">
-                        <span class="section-tag">About Begampur Rope Center</span>
-                        <h2 style="font-family: var(--font-display); font-size: 2.25rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem;">Industrial Excellence Since 2010</h2>
+                        <span class="section-tag"><span>About Begampur Rope Center</span></span>
+                        <h2 style="font-size: 2.25rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem;">Industrial Excellence Since 2010</h2>
                         <div class="about-text">
                             <p>
-                                Located in West Bengal's historic manufacturing corridor, M/S. Begampur Rope Center has engineered industrial-grade polymer and fiber ropes for over 15 years.
-                            </p>
-                            <p>
-                                Guided by proprietor Mr. Sekh Mostakin Ali, we operate a semi-automatic extrusion unit with a monthly capacity of 180 metric tons. We control every stage of drawing, twisting, and rope laying to ensure high tensile load thresholds and stability.
+                                M/S. Begampur Rope Center manufactures high-tensile polymer and natural fiber ropes. Led by Mr. Sekh Mostakin Ali, our Hooghly facility outputs 180 metric tons monthly, combining advanced drawing, twisting, and rope-laying technologies for certified B2B stability.
                             </p>
                         </div>
 
@@ -2420,8 +2537,8 @@
                 </div>
             </section>
 
-            <!-- 3. OUR SOLUTIONS CAROUSEL (RENAMED TO "Our Solutions", WITH SLIDESHOW CARDS) -->
-            <section class="solutions-section section-padding" id="solutionsSection">
+            <!-- 3. OUR SOLUTIONS CAROUSEL (4:3 Aspect Ratio Cards with optimized text) -->
+            <section class="solutions-section section-padding scroll-reveal" id="solutionsSection">
                 <div class="container">
                     <div class="slider-header-wrap">
                         <div>
@@ -2445,7 +2562,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Agriculture & Farming</h3>
-                                <p class="solution-card-desc">UV stabilized trellis lines, crop support spools, and shade-net yarns.</p>
+                                <p class="solution-card-desc">UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.</p>
                             </div>
 
                             <!-- 2. Marine Mooring -->
@@ -2457,7 +2574,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Marine & Mooring</h3>
-                                <p class="solution-card-desc">Floating buoyant PP mooring coils and high-tensile shipyard rigging ropes.</p>
+                                <p class="solution-card-desc">Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.</p>
                             </div>
 
                             <!-- 3. Industrial -->
@@ -2469,7 +2586,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Industrial Usage</h3>
-                                <p class="solution-card-desc">Heavy packaging twin ropes, box handle spools, and commercial binding cords.</p>
+                                <p class="solution-card-desc">Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.</p>
                             </div>
 
                             <!-- 4. Cargo Securing -->
@@ -2481,7 +2598,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Cargo Transport</h3>
-                                <p class="solution-card-desc">High-friction securing lashing lines for safe truck and container transit.</p>
+                                <p class="solution-card-desc">High-friction truck lashing ropes and container securing lines built for trans-continental transit.</p>
                             </div>
 
                             <!-- 5. Safety Nets -->
@@ -2493,7 +2610,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Safety Applications</h3>
-                                <p class="solution-card-desc">Debris fall protection netting systems and high-strength border cords.</p>
+                                <p class="solution-card-desc">High-impact debris protection netting systems and double-knot mesh panels for personnel safety.</p>
                             </div>
 
                             <!-- 6. Construction scaffold -->
@@ -2505,7 +2622,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Construction</h3>
-                                <p class="solution-card-desc">Scaffold binding lines, hoist pulleys, and heavy safety mesh barriers.</p>
+                                <p class="solution-card-desc">Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.</p>
                             </div>
 
                             <!-- 7. Household drying line -->
@@ -2517,7 +2634,7 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Household & General</h3>
-                                <p class="solution-card-desc">Cloth drying lines, retail colored packing ropes, and soft cotton lines.</p>
+                                <p class="solution-card-desc">Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.</p>
                             </div>
 
                             <!-- 8. Commercial Fishing -->
@@ -2529,7 +2646,17 @@
                                 </div>
                                 <div class="solution-card-overlay"></div>
                                 <h3 class="solution-card-title">Marine & Fishing</h3>
-                                <p class="solution-card-desc">High-abrasion net border cords and heavy-duty commercial fishing ropes.</p>
+                                <p class="solution-card-desc">Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.</p>
+                            </div>
+
+                            <!-- solutions Talk to Expert Card (pinned to end of solutions) -->
+                            <div class="solution-card enquire-trigger" style="border: 1.5px dashed var(--color-accent); background-color: rgba(168, 50, 50, 0.02); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1.5rem;" data-product="Custom Solutions Consultation">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" style="width: 42px; height: 42px; margin-bottom: 1.25rem;">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                <h3 style="font-size: 1.35rem; color: var(--color-primary); font-weight: 700; margin-bottom: 0.5rem; text-shadow: none; -webkit-text-stroke: 0;">Talk to Our Expert</h3>
+                                <p style="font-size: 0.8rem; color: var(--color-muted); line-height: 1.4; margin-bottom: 1.25rem;">Request customized polymer formulas, color matchings, or load-bearing testing parameters.</p>
+                                <span class="card-btn" style="border-color: var(--color-accent); color: var(--color-accent); width: auto; padding: 0.55rem 1.5rem;">Consult Now &rarr;</span>
                             </div>
 
                         </div>
@@ -2538,7 +2665,7 @@
             </section>
 
             <!-- 4. GLOBAL NETWORK (GEOGRAPHICAL DASHBOARD WORLD MAP) -->
-            <section class="network-section section-padding" id="networkSection">
+            <section class="network-section section-padding scroll-reveal" id="networkSection">
                 <div class="container network-grid">
                     <div class="network-info">
                         <h2 class="network-title">Global Network</h2>
@@ -2592,12 +2719,12 @@
                 </div>
             </section>
 
-            <!-- 5. PRODUCT PORTFOLIO CAROUSEL (REPOSITIONED AFTER GLOBAL NETWORK) -->
-            <section class="home-slider-section section-padding" id="productsSection">
+            <!-- 5. PRODUCT PORTFOLIO CAROUSEL -->
+            <section class="home-slider-section section-padding scroll-reveal" id="productsSection">
                 <div class="container">
                     <div class="slider-header-wrap">
                         <div>
-                            <span class="section-tag">Product Portfolio</span>
+                            <span class="section-tag"><span>Product Portfolio</span></span>
                             <h2 class="slider-headline">Primary Industrial Products</h2>
                         </div>
                         <div class="slider-controls">
@@ -2669,7 +2796,7 @@
                                 </div>
                             </div>
 
-                            <!-- Sleek and Minimalist Classy View-All Card -->
+                            <!-- Sleek and Minimalist Classy View-All Card (pinned to end of products) -->
                             <div class="slider-view-all-card" onclick="window.location.hash='#products'">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -2683,43 +2810,68 @@
                 </div>
             </section>
 
-            <!-- 6. CONNECT SECTION (SHORT FORM + BUSINESS INFO) -->
-            <section class="connect-section section-padding" id="connect">
-                <div class="container connect-grid">
-                    <div class="connect-info">
-                        <h3>Connect With Our Sales Office</h3>
-                        <p style="margin-bottom: 2rem; color: #A0B2C6;">
-                            Reach out to our West Bengal headquarters or coordinate with our export logistics desk directly. We handle bulk custom contract requests.
-                        </p>
+            <!-- 5.5 SUSTAINABLE DEVELOPMENT SECTION (16:9 Aspect Ratio Banner Overlay) -->
+            <section class="section-padding scroll-reveal" id="sustainability" style="background-color: #FFFFFF; border-bottom: 1px solid var(--color-border);">
+                <div class="container" style="text-align: left;">
+                    <span class="section-tag"><span>Sustainability</span></span>
+                    <h2 style="font-size: 2.5rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Sustainable Development</h2>
+                    
+                    <!-- 16:9 Aspect Ratio Cover Banner -->
+                    <div style="position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 10px 30px rgba(10,30,61,0.03);">
+                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:-2; background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'); background-size:cover; background-position:center;"></div>
+                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(7,20,39,0.92) 0%, rgba(10,30,61,0.65) 100%); z-index:-1;"></div>
                         
-                        <div style="margin-bottom: 1.5rem;">
-                            <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">Factory Location:</strong>
-                            <span style="font-size: 0.88rem;">Vill: Joykrishnapur, Begampur, Near Bhambhol House, Hooghly - 712306, West Bengal, India</span>
-                        </div>
-
-                        <div style="margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">Proprietor:</strong>
-                                <span style="font-size: 0.88rem;">Mr. Sekh Mostakin Ali</span>
-                            </div>
-                            <div>
-                                <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">WhatsApp / Call:</strong>
-                                <span style="font-size: 0.88rem;">+91 80717 92828</span>
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">GSTIN ID:</strong>
-                                <span style="font-size: 0.88rem;">19BBVPS7653E1ZT</span>
-                            </div>
-                            <div>
-                                <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.25rem;">Export License:</strong>
-                                <span style="font-size: 0.88rem;">0212002091</span>
+                        <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; right: 2.5rem; color: #FFFFFF; max-width: 680px;">
+                            <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; color: #FFFFFF; line-height: 1.4; -webkit-text-stroke: 0.15px #000000; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                                We reduce environmental footprints through active polymer recycling, closed-loop water filtration, energy-efficient extrusion, and biodegradable natural cotton alternatives.
+                            </p>
+                            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Polymer Recycling</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Low-Loss Extrusion</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Organic Cotton</span>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Zero Wastewater</span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
 
+            <!-- 5.6 NEW CERTIFICATIONS SECTION -->
+            <section class="section-padding scroll-reveal" id="certifications" style="background-color: #FFFFFF; border-bottom: 1px solid var(--color-border);">
+                <div class="container" style="text-align: left;">
+                    <span class="section-tag"><span>Certifications</span></span>
+                    <h2 style="font-size: 2.5rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Our Quality Certifications</h2>
+                    <!-- Blank space placeholder for future certifications -->
+                    <div style="width: 100%; height: 220px; background-color: var(--color-bg); border: 2px dashed var(--color-border); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--color-muted); font-size: 0.9rem; font-weight: 500;">
+                        Quality certification credentials under processing...
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5.7 NEW FACTORY GOOGLE MAPS SECTION -->
+            <section class="section-padding scroll-reveal" id="locationMap" style="background-color: var(--color-bg); border-bottom: 1px solid var(--color-border);">
+                <div class="container" style="text-align: left;">
+                    <span class="section-tag"><span>Factory Location</span></span>
+                    <h2 style="font-size: 2.5rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Find Our Factory</h2>
+                    <div style="width: 100%; overflow: hidden; border-radius: 4px; border: 1px solid var(--color-border); box-shadow: 0 10px 30px rgba(10,30,61,0.02);">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.966963789073!2d88.24075191542618!3d22.76657933158097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8841f3d3d63d9%3A0xe1b5399583b482ba!2sBegampur%2C%20West%20Bengal%20712306!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0; display:block; filter: grayscale(0.2) contrast(1.05) brightness(0.95);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. CONNECT SECTION (Information presented after the form details) -->
+            <section class="connect-section section-padding scroll-reveal" id="connect">
+                <div class="container">
+                    
+                    <!-- Form block -->
                     <div class="connect-form-card">
                         <h4>Submit Wholesale Inquiry</h4>
                         <form id="connectForm">
@@ -2738,8 +2890,32 @@
                             <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry &rarr;</button>
                         </form>
                     </div>
+
+                    <!-- B2B Corporate Info Block placed directly after the form -->
+                    <div style="margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2.5rem; text-align: left;" id="connectDetailsGrid">
+                        <div>
+                            <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.4rem;">Factory Location:</strong>
+                            <span style="font-size: 0.85rem; line-height: 1.4;">Vill: Joykrishnapur, Begampur, Near Bhambhol House, Hooghly - 712306, West Bengal, India</span>
+                        </div>
+                        <div>
+                            <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.4rem;">Management:</strong>
+                            <span style="font-size: 0.85rem;">Proprietor: Mr. Sekh Mostakin Ali<br>Est. 2010</span>
+                        </div>
+                        <div>
+                            <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.4rem;">Contact:</strong>
+                            <span style="font-size: 0.85rem;">WhatsApp / Call:<br>+91 80717 92828</span>
+                        </div>
+                        <div>
+                            <strong style="color: #FFFFFF; display: block; font-size: 0.95rem; margin-bottom: 0.4rem;">Credentials:</strong>
+                            <span style="font-size: 0.85rem;">GSTIN: 19BBVPS7653E1ZT<br>Export License: 0212002091</span>
+                        </div>
+                    </div>
+
                 </div>
             </section>
+
+            <!-- 6.5 BLANK SPACE OF 16:9 ASPECT RATIO BETWEEN CONNECT AND FOOTER -->
+            <div style="width: 100%; aspect-ratio: 16/9; background-color: var(--color-bg);"></div>
 
         </div>
 
@@ -2749,20 +2925,17 @@
         <div class="view-page" id="view-about">
             <section class="section-padding about-view-section">
                 <div class="container">
-                    <span class="section-tag">About Our Factory</span>
-                    <h1 class="about-main-title">M/S. Begampur Rope Center</h1>
+                    <span class="section-tag"><span>About Our Factory</span></span>
+                    <h1 class="about-main-title" style="margin-bottom: 2rem;">M/S. Begampur Rope Center</h1>
 
                     <div class="about-profile-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem;">
                         <div class="about-profile-text">
                             <p>
-                                Located in West Bengal's historic manufacturing corridor, M/S. Begampur Rope Center has engineered industrial-grade polymer and fiber ropes for over 15 years.
-                            </p>
-                            <p>
-                                Guided by proprietor Mr. Sekh Mostakin Ali, we operate a semi-automatic extrusion unit with a monthly capacity of 180 metric tons. We control every stage of drawing, twisting, and rope laying to ensure high tensile load thresholds and stability.
+                                M/S. Begampur Rope Center manufactures high-tensile polymer and natural fiber ropes. Led by Mr. Sekh Mostakin Ali, our Hooghly facility outputs 180 metric tons monthly, combining advanced drawing, twisting, and rope-laying technologies for certified B2B stability.
                             </p>
                         </div>
                         <div style="background-color: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(10,30,61,0.02);">
-                            <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1.25rem;">Manufacturing Scale</h3>
+                            <h3 style="font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1.25rem;">Manufacturing Scale</h3>
                             <ul style="list-style: none; display: grid; gap: 1rem;">
                                 <li style="display:flex; justify-content:space-between; border-bottom:1px solid var(--color-border); padding-bottom:0.5rem; font-size:0.92rem;">
                                     <strong>Annual Turnover</strong>
@@ -2787,7 +2960,7 @@
                     <!-- Desktop View Journey timeline and grid blocks -->
                     <div class="about-layout-desktop">
                         <div>
-                            <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--color-primary); margin-bottom: 2.5rem;">Our 15-Year Journey</h2>
+                            <h2 style="font-size: 2rem; color: var(--color-primary); margin-bottom: 2.5rem;">Our 15-Year Journey</h2>
                             <div class="journey-timeline-block">
                                 <div class="journey-item">
                                     <div class="journey-dot"></div>
@@ -2813,7 +2986,7 @@
                         </div>
 
                         <div>
-                            <h2 style="font-family: var(--font-display); font-size: 2rem; color: var(--color-primary); margin-bottom: 2.5rem;">Our Quality Standards</h2>
+                            <h2 style="font-size: 2rem; color: var(--color-primary); margin-bottom: 2.5rem;">Our Quality Standards</h2>
                             <div class="values-grid-block">
                                 <div class="value-card">
                                     <span class="value-card-marker">01</span>
@@ -2850,8 +3023,8 @@
                 <div class="container">
                     <a href="#about" class="back-nav-btn">&larr; Back to About Us</a>
                     
-                    <span class="section-tag">Our History</span>
-                    <h1 style="font-family: var(--font-display); font-size: 2.75rem; color: var(--color-primary); margin-bottom: 3rem;">Timeline Roadmap</h1>
+                    <span class="section-tag"><span>Our History</span></span>
+                    <h1 style="font-size: 2.75rem; color: var(--color-primary); margin-bottom: 3rem;">Timeline Roadmap</h1>
                     
                     <div class="journey-timeline-block" style="max-width: 600px;">
                         <div class="journey-item">
@@ -2887,8 +3060,8 @@
                 <div class="container">
                     <a href="#about" class="back-nav-btn">&larr; Back to About Us</a>
                     
-                    <span class="section-tag">Quality standards</span>
-                    <h1 style="font-family: var(--font-display); font-size: 2.75rem; color: var(--color-primary); margin-bottom: 3rem;">Our Core Principles</h1>
+                    <span class="section-tag"><span>Quality standards</span></span>
+                    <h1 style="font-size: 2.75rem; color: var(--color-primary); margin-bottom: 3rem;">Our Core Principles</h1>
                     
                     <div class="values-grid-block" style="grid-template-columns: 1fr; max-width: 600px;">
                         <div class="value-card">
@@ -2923,8 +3096,8 @@
             <section class="section-padding products-view-section">
                 <div class="container">
                     <div class="section-header text-center">
-                        <span class="section-tag">B2B Sectors</span>
-                        <h1 style="font-family: var(--font-display); font-size: 3rem; color: var(--color-primary); margin-bottom: 1rem;">Industrial Solutions Directory</h1>
+                        <span class="section-tag"><span>B2B Sectors</span></span>
+                        <h1 style="font-size: 3rem; color: var(--color-primary); margin-bottom: 1rem;">Industrial Solutions Directory</h1>
                         <p style="color: var(--color-muted); max-width: 700px; margin: 0 auto;">Select an industry use case to read detailed technical requirements and find recommended polymer cordage lines.</p>
                     </div>
 
@@ -2934,7 +3107,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Agriculture & Farming</h3>
-                                <p class="solutions-directory-desc">UV stabilized crop support spools, trellis lines, and shade-net yarns.</p>
+                                <p class="solutions-directory-desc">UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2943,7 +3116,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Marine & Mooring</h3>
-                                <p class="solutions-directory-desc">Buoyant ship mooring coils and high-tensile harbor towing lines.</p>
+                                <p class="solutions-directory-desc">Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2952,7 +3125,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Industrial Usage</h3>
-                                <p class="solutions-directory-desc">Commercial packaging twin ropes, binder cords, and warehouse handles.</p>
+                                <p class="solutions-directory-desc">Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2961,7 +3134,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Cargo Transport</h3>
-                                <p class="solutions-directory-desc">High-friction container and truck cargo securing lines.</p>
+                                <p class="solutions-directory-desc">High-friction truck lashing ropes and container securing lines built for trans-continental transit.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2970,7 +3143,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Safety Applications</h3>
-                                <p class="solutions-directory-desc">High-tenacity fall arrest boundary mesh panels and border nets.</p>
+                                <p class="solutions-directory-desc">High-impact debris protection netting systems and double-knot mesh panels for personnel safety.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2979,7 +3152,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Construction</h3>
-                                <p class="solutions-directory-desc">Heavy scaffold tying lines and hoisting rigging systems.</p>
+                                <p class="solutions-directory-desc">Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2988,7 +3161,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Household & General</h3>
-                                <p class="solutions-directory-desc">Utility cloth drying spools and retail packaging ropes.</p>
+                                <p class="solutions-directory-desc">Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -2997,7 +3170,7 @@
                             <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=500&q=80');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Marine & Fishing</h3>
-                                <p class="solutions-directory-desc">High-abrasion trawler net border ropes and commercial spools.</p>
+                                <p class="solutions-directory-desc">Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.</p>
                                 <span class="solutions-directory-btn">Read More &rarr;</span>
                             </div>
                         </div>
@@ -3014,8 +3187,8 @@
             <section class="section-padding products-view-section">
                 <div class="container">
                     <div class="section-header text-center">
-                        <span class="section-tag">Catalog</span>
-                        <h1 style="font-family: var(--font-display); font-size: 3rem; color: var(--color-primary); margin-bottom: 1rem;">Industrial Rope & Polymer Catalog</h1>
+                        <span class="section-tag"><span>Catalog</span></span>
+                        <h1 style="font-size: 3rem; color: var(--color-primary); margin-bottom: 1rem;">Industrial Rope & Polymer Catalog</h1>
                         <p style="margin-bottom: 2rem; color: var(--color-muted);">Complete B2B product specifications. High-tensile lines, twisted yarns, and nets available for global procurement.</p>
                     </div>
 
@@ -3056,15 +3229,15 @@
 
                     <div class="solution-detail-grid">
                         <div class="solution-detail-info">
-                            <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem;">Industry Requirement & Solution</h2>
+                            <h2 style="font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem;">Industry Requirement & Solution</h2>
                             <p id="solDetailDesc" style="color: var(--color-text); margin-bottom: 2rem;">Detailed B2B context about this industry.</p>
                             
-                            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--color-primary); margin-bottom: 1rem;">Recommended Industrial Products</h3>
+                            <h3 style="font-size: 1.25rem; color: var(--color-primary); margin-bottom: 1rem;">Recommended Industrial Products</h3>
                             <div class="solution-products-list" id="solDetailProductsList"></div>
                         </div>
 
                         <div style="background-color: #FFFFFF; border: 1px solid var(--color-border); border-radius: 4px; padding: 2rem;">
-                            <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-primary); margin-bottom: 1rem; border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem;">Solutions Overview</h3>
+                            <h3 style="font-size: 1.2rem; color: var(--color-primary); margin-bottom: 1rem; border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem;">Solutions Overview</h3>
                             <p style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1.5rem;">
                                 We supply custom containers loaded directly from Haldia and Kolkata ports. Our pricing options are adaptable for wholesale distributors.
                             </p>
@@ -3096,13 +3269,13 @@
 
                         <div>
                             <span class="section-tag" id="prodDetailBadge">Category</span>
-                            <h1 style="font-family: var(--font-display); font-size: 3rem; color: var(--color-primary); line-height: 1.1; margin-bottom: 1rem;" id="prodDetailTitle">Product Name</h1>
+                            <h1 style="font-size: 3rem; color: var(--color-primary); line-height: 1.1; margin-bottom: 1rem;" id="prodDetailTitle">Product Name</h1>
                             <p style="font-size: 1.1rem; font-weight: 500; color: var(--color-accent); margin-bottom: 1.5rem;" id="prodDetailDesc">Short intro</p>
                             <div style="line-height: 1.6; color: var(--color-text); margin-bottom: 2rem;" id="prodDetailLongDesc">Long detailed spec text.</div>
 
                             <div style="display: flex; gap: 1rem;">
                                 <button class="btn btn-primary enquire-trigger" id="prodDetailEnquireBtn">Enquire For Price</button>
-                                <a href="#products" class="btn btn-secondary" style="color: var(--color-primary); border-color: var(--color-primary); font-family: var(--font-display);">Back to Catalog</a>
+                                <a href="#products" class="btn btn-secondary" style="color: var(--color-primary); border-color: var(--color-primary);">Back to Catalog</a>
                             </div>
                         </div>
                     </div>
@@ -3118,7 +3291,7 @@
             <section class="section-padding vision-view-section">
                 <div class="container vision-grid">
                     <div class="vision-header">
-                        <span class="section-tag" style="border-color: #FFFFFF; color: #FFFFFF;">Roadmap</span>
+                        <span class="section-tag" style="border-color: #FFFFFF; color: #FFFFFF;"><span>Roadmap</span></span>
                         <h2>Vision 2032: Scaling Polymer Manufacturing</h2>
                         <p class="timeline-item-desc" style="font-size: 1rem; margin-bottom: 2rem;">
                             Begampur Rope Center is transitioning into a vertically integrated polymer manufacturing entity. We are expanding our production capability to 1,000 metric tons per month.
@@ -3160,8 +3333,11 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about-block">
                     <a href="#home" class="logo-block" style="margin-bottom: 1rem;">
-                        <span class="logo-title" style="color: #FFFFFF;">BEGAMPUR ROPE CENTER</span>
-                        <span class="logo-tagline" style="color: var(--color-accent);">Est. 2010 | Hooghly, India</span>
+                        <div class="logo-placeholder" style="border-color: #FFFFFF; color: #FFFFFF;">BRC</div>
+                        <div style="display: flex; flex-direction: column;">
+                            <span class="logo-title" style="color: #FFFFFF;">BEGAMPUR ROPE CENTER</span>
+                            <span class="logo-tagline" style="color: var(--color-accent);">Est. 2010 | Hooghly, India</span>
+                        </div>
                     </a>
                     <p>GST-registered high-tensile polymer and natural fiber rope production. Serving domestic markets and exporting container capacity globally.</p>
                     <p style="font-size: 0.8rem; opacity: 0.8;">Proprietor: Mr. Sekh Mostakin Ali</p>
@@ -3201,7 +3377,6 @@
 
             <div class="footer-bottom-strip">
                 <p>&copy; 2026 M/S. Begampur Rope Center. All Rights Reserved. GSTIN: 19BBVPS7653E1ZT.</p>
-                <p>Developed by <a href="https://aumeverse.in" target="_blank" rel="noopener">Aumeverse — AI-Native Creative Agency</a></p>
             </div>
         </div>
     </footer>
@@ -3257,9 +3432,10 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="productInterest">Product Interested In *</label>
-                        <select id="productInterest" class="form-control" required>
-                            <option value="" disabled selected>Select a Product</option>
+                        <!-- Removed mandatory validation for Product Interested -->
+                        <label class="form-label" for="productInterest">Product Interested In</label>
+                        <select id="productInterest" class="form-control">
+                            <option value="" selected>Select a Product (Optional)</option>
                             <option value="HDPE Monofilament Rope">HDPE Monofilament Rope</option>
                             <option value="Monofilament Super Rope">Monofilament Super Rope</option>
                             <option value="Polyethylene Monofilament Rope">Polyethylene Monofilament Rope</option>
@@ -3279,8 +3455,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="quantity">Monthly Quantity *</label>
-                        <input type="text" id="quantity" class="form-control" placeholder="5,000 kg / 10 MT" required>
+                        <!-- Removed mandatory validation for Monthly Quantity -->
+                        <label class="form-label" for="quantity">Monthly Quantity</label>
+                        <input type="text" id="quantity" class="form-control" placeholder="5,000 kg / 10 MT (Optional)">
                     </div>
                 </div>
 
@@ -3310,6 +3487,17 @@
         </div>
     </div>
 
+    <!-- COOKIE PERMISSION BANNER -->
+    <div id="cookieConsentBanner" style="position: fixed; bottom: 20px; left: 20px; right: 20px; max-width: 420px; background-color: rgba(7, 20, 39, 0.96); border: 1px solid var(--color-accent); border-radius: 4px; padding: 1.25rem; color: #FFFFFF; z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease;">
+        <p style="font-size: 0.8rem; color: #A0B2C6; line-height: 1.4; margin: 0;">
+            We use cookies to optimize your B2B inquiry experience. By continuing to navigate our portal, you agree to our cookie terms.
+        </p>
+        <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+            <button id="acceptCookiesBtn" class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; box-shadow: 0 2px 0 var(--color-accent-shadow);">Accept</button>
+            <button id="declineCookiesBtn" class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.75rem; color: #FFFFFF; border-color: rgba(255,255,255,0.4); box-shadow: 0 2px 0 rgba(255,255,255,0.15);">Decline</button>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT B2B DATASETS & LOGIC -->
     <script>
         // 16 Detailed Product Specification Sheets
@@ -3319,7 +3507,7 @@
                 category: "HDPE Monofilament",
                 catId: "hdpe",
                 image: "https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=600&q=80",
-                desc: "UV stabilized, zero water absorption polymer monofilament rope engineered for severe outdoor weathering.",
+                desc: "UV stabilized, zero water absorption polymer monofilament rope engineered for outdoor weathering.",
                 longDesc: "Our High-Density Polyethylene (HDPE) Monofilament Ropes are manufactured using premium-grade virgin resins combined with highly effective UV-inhibitor compounds. Designed for maximum longevity, these ropes absorb zero water, making them resistant to rotting, mold, and chemical acids. They are highly favored by B2B buyers in agricultural crop trellising and marine boundary setups.",
                 specs: {
                     "Diameter Range": "2 mm to 24 mm",
@@ -3564,62 +3752,62 @@
             }
         };
 
-        // 8 B2B Industry Use Case Solutions
+        // 8 B2B Industry Use Case Solutions (Optimized minimal copy)
         const solutionsData = {
             "agriculture-farming": {
                 title: "Agriculture & Farming",
                 tagline: "High-Tensile Crops & Greenhouse Support lines",
                 coverImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80",
-                description: "Modern agriculture demands high-durability polymers that resist severe sunlight exposure, moisture, and chemical pesticides. M/S. Begampur Rope Center provides specialized HDPE monofilament and PE lines designed specifically for crop trellises, vineyard support, banana plantation rigging, and automated shade net weaving. Our UV-stabilized solutions protect crops, sustain structural tension, and reduce replacement overheads.",
+                description: "UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.",
                 products: ["hdpe-monofilament", "polyethylene-monofilament", "twin-rope", "monofilament-yarn"]
             },
             "marine-mooring": {
                 title: "Marine & Mooring",
                 tagline: "Buoyant, Rot-Proof Maritime Towing Lines",
                 coverImage: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80",
-                description: "Heavy harbor towing and deep-sea vessel mooring require high breaking strengths and complete immunity to saltwater rot. We manufacture marine-grade polypropylene ropes with a specific gravity below 1.0, enabling them to float and stay clear of ship propellers. Engineered with high abrasion shielding and low elongation, our mooring lines absorb sudden surge forces without snapping.",
+                description: "Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.",
                 products: ["marine-polypropylene", "monofilament-super", "pp-export"]
             },
             "industrial-usage": {
                 title: "Industrial Usage",
                 tagline: "Heavy-Duty Packaging & Material Handling Cordage",
                 coverImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
-                description: "From factory assembly lines to warehousing cargo bundling, industrial operations require robust cordage with high knot retention. Our polypropylene (PP) twisted ropes and PP cords offer excellent resistance to acids, alkalis, and friction. Ideal for commercial printing, B2B bundling, paper bag manufacturing, and heavy-duty industrial bundling.",
+                description: "Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.",
                 products: ["pp-rope", "pp-cord", "twin-rope"]
             },
             "cargo-transport": {
                 title: "Cargo Transport",
                 tagline: "Secure Truck Lashing & Container Cargo Securing",
                 coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
-                description: "Safe transit Securing secures trans-continental B2B freight corridors.",
+                description: "High-friction truck lashing ropes and container securing lines built for trans-continental transit.",
                 products: ["pp-rope", "monofilament-super", "pe-export"]
             },
             "safety-applications": {
                 title: "Safety Applications",
                 tagline: "High-Tenacity Fall Protection Netting & Boundary Lines",
                 coverImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
-                description: "Personnel and equipment safety on site demands load-tested boundary netting. Our safety nets are manufactured from high-tenacity polymers, featuring double-knot mesh configurations designed to absorb high-impact drops. Conforming to commercial building regulations, these nets protect borders and prevent debris falls.",
+                description: "High-impact debris protection netting systems and double-knot mesh panels for personnel safety.",
                 products: ["safety-net", "hdpe-monofilament"]
             },
             "construction": {
                 title: "Construction",
                 tagline: "Scaffolding Lashing & Heavy Material Hoisting Lines",
                 coverImage: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
-                description: "Construction environments subject rope to concrete friction, mortar contact, and intense weather. We provide heavy-gauge PP lashing ropes and Scaffold safety netting that withstand these hostile chemical and abrasive elements, ensuring scaffolding structural integrity and worker safety during high-rise builds.",
+                description: "Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.",
                 products: ["pp-rope", "safety-net"]
             },
             "household-general": {
                 title: "Household & General Purpose",
                 tagline: "Weatherproof Hanging lines & Domestic Packaging Cords",
                 coverImage: "https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=1200&q=80",
-                description: "For retail and domestic B2B supply lines, we manufacture versatile, lightweight ropes. Our cloth-drying ropes, multi-color packaging coils, and natural cotton lines offer an optimal balance of pliability, knotting security, and resistance to domestic wear and tear. Available in attractive wholesale color assortments.",
+                description: "Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.",
                 products: ["cloth-drying", "cotton-rope", "plastic-rope", "multicolour-plastic"]
             },
             "custom-marine-fishing": {
                 title: "Marine & Fishing",
                 tagline: "High-Abrasion Net Borders & Trawler Rigging",
                 coverImage: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=1200&q=80",
-                description: "Commercial fishing trawlers require lines that resist continuous abrasion against steel winches and ocean beds. Our HDPE monofilament netting lines and PE spools offer maximum knot tightness and minimal water weight retention, keeping fishing nets open and robust under extreme hydro-dynamic stress.",
+                description: "Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.",
                 products: ["hdpe-mono", "monofilament-yarn", "polyethylene-monofilament"]
             }
         };
@@ -4058,7 +4246,31 @@
             });
         });
 
-        function isPointInPolygon(x, y, vs) {
+        // Fisher-Yates Carousel shuffler function
+        function shuffleCarousel(trackId, pinCountAtEnd = 1) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            const children = Array.from(track.children);
+            if (children.length <= pinCountAtEnd) return;
+            
+            const toShuffle = children.slice(0, children.length - pinCountAtEnd);
+            const pinned = children.slice(children.length - pinCountAtEnd);
+            
+            for (let i = toShuffle.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [toShuffle[i], toShuffle[j]] = [toShuffle[j], toShuffle[i]];
+            }
+            
+            track.innerHTML = '';
+            toShuffle.forEach(child => track.appendChild(child));
+            pinned.forEach(child => track.appendChild(child));
+        }
+
+        // Shuffle carousels on page load
+        shuffleCarousel('solSliderTrack', 1); // Pin the Talk to Expert card at the end
+        shuffleCarousel('prodSliderTrack', 1); // Pin the View All card at the end
+
+        function isPointInPolygon(vs, x, y) {
             let inside = false;
             for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
                 const xi = vs[i].lon, yi = vs[i].lat;
@@ -4114,7 +4326,7 @@
                 const lon = (mouseX / mapWidth) * 360 - 180;
                 const lat = 75 - (mouseY / mapHeight) * 130;
                 for (let i = 0; i < cachedRings.length; i++) {
-                    if (isPointInPolygon(lon, lat, cachedRings[i])) {
+                    if (isPointInPolygon(cachedRings[i], lon, lat)) {
                         hoveredRingIdx = i;
                         break;
                     }
@@ -4138,8 +4350,8 @@
                 mapCtx.closePath();
 
                 if (idx === hoveredRingIdx) {
-                    mapCtx.fillStyle = 'rgba(139, 92, 246, 0.18)'; // Soft violet hover
-                    mapCtx.strokeStyle = 'rgba(139, 92, 246, 0.65)';
+                    mapCtx.fillStyle = 'rgba(168, 50, 50, 0.12)'; // Soft red hover
+                    mapCtx.strokeStyle = 'rgba(168, 50, 50, 0.65)';
                     mapCtx.lineWidth = 1.35;
                 } else {
                     mapCtx.fillStyle = 'rgba(26, 95, 168, 0.05)'; // Deep steel B2B landmass fill
@@ -4183,7 +4395,7 @@
 
                 // Draw pulsing geographical radar concentric ring around target nodes
                 let radarRadius = ((mapRouteT + (destinations.indexOf(dest) * 0.15)) * 25) % 25;
-                mapCtx.strokeStyle = 'rgba(232, 119, 34, ' + (1 - radarRadius/25) * 0.45 + ')';
+                mapCtx.strokeStyle = 'rgba(168, 50, 50, ' + (1 - radarRadius/25) * 0.45 + ')';
                 mapCtx.lineWidth = 1;
                 mapCtx.beginPath();
                 mapCtx.arc(destX, destY, radarRadius, 0, 2 * Math.PI);
@@ -4197,11 +4409,11 @@
                 const midY = (hubY + destY) / 2 - 35;
                 
                 mapCtx.quadraticCurveTo(midX, midY, destX, destY);
-                mapCtx.strokeStyle = isHovered ? 'rgba(232, 119, 34, 0.7)' : 'rgba(232, 119, 34, 0.25)';
+                mapCtx.strokeStyle = isHovered ? 'rgba(168, 50, 50, 0.7)' : 'rgba(168, 50, 50, 0.25)';
                 mapCtx.lineWidth = isHovered ? 2.5 : 1.5;
                 mapCtx.stroke();
                 
-                // Draw moving orange pulse particle
+                // Draw moving red pulse particle
                 const t = mapRouteT;
                 const dotX = Math.pow(1-t, 2) * hubX + 2*(1-t)*t * midX + Math.pow(t, 2) * destX;
                 const dotY = Math.pow(1-t, 2) * hubY + 2*(1-t)*t * midY + Math.pow(t, 2) * destY;
@@ -4265,15 +4477,15 @@
                 mapCtx.stroke();
 
                 mapCtx.fillStyle = '#FFFFFF';
-                mapCtx.font = 'bold 12px Space Grotesk';
+                mapCtx.font = 'bold 12px Plus Jakarta Sans';
                 mapCtx.fillText(hoveredDest.name, boxX + 12, boxY + 20);
 
                 mapCtx.fillStyle = 'var(--color-accent)';
-                mapCtx.font = 'bold 9px Outfit';
+                mapCtx.font = 'bold 9px Plus Jakarta Sans';
                 mapCtx.fillText(hoveredDest.status, boxX + 12, boxY + 36);
 
                 mapCtx.fillStyle = '#A0B2C6';
-                mapCtx.font = '10px Outfit';
+                mapCtx.font = '10px Plus Jakarta Sans';
                 mapCtx.fillText(hoveredDest.route, boxX + 12, boxY + 54);
             }
 
@@ -4287,31 +4499,22 @@
             }
         }
 
-        function stopNetworkMap() {
-            if (networkAnimId) {
-                cancelAnimationFrame(networkAnimId);
-                networkAnimId = null;
-            }
-            progressBarsAnimated = false;
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                bar.style.width = '0%';
-            });
-        }
-
-        // SCROLL REVEAL OBSERVER
+        // SCROLL REVEAL OBSERVER (Slide in and Slide out continuously on scroll)
         function setupScrollReveals() {
-            const items = document.querySelectorAll('.timeline-item');
-            if (items.length === 0) return;
+            const sections = document.querySelectorAll('.scroll-reveal');
+            if (sections.length === 0) return;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
+                    } else {
+                        entry.target.classList.remove('revealed');
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { threshold: 0.08 });
 
-            items.forEach(item => observer.observe(item));
+            sections.forEach(sec => observer.observe(sec));
         }
         setupScrollReveals();
 
@@ -4321,8 +4524,9 @@
         const selectElement = document.getElementById('productInterest');
 
         document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('enquire-trigger')) {
-                const prod = e.target.getAttribute('data-product');
+            if (e.target.classList.contains('enquire-trigger') || e.target.closest('.enquire-trigger')) {
+                const triggerEl = e.target.classList.contains('enquire-trigger') ? e.target : e.target.closest('.enquire-trigger');
+                const prod = triggerEl.getAttribute('data-product');
                 if (prod) {
                     selectElement.value = prod;
                 }
@@ -4347,8 +4551,8 @@
             const country = document.getElementById('country').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value || 'N/A';
-            const product = selectElement.value;
-            const qty = document.getElementById('quantity').value;
+            const product = selectElement.value || 'None Selected';
+            const qty = document.getElementById('quantity').value || 'Not Specified';
             const msg = document.getElementById('message').value || 'No message';
 
             inquiryDrawer.classList.remove('active');
@@ -4383,6 +4587,36 @@
             el.addEventListener('click', (e) => {
                 if (e.target === el) el.classList.remove('active');
             });
+        });
+
+        // COOKIE BANNER CONTROL LOGIC
+        window.addEventListener('load', () => {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                const banner = document.getElementById('cookieConsentBanner');
+                setTimeout(() => {
+                    banner.style.opacity = '1';
+                    banner.style.transform = 'translateY(0)';
+                }, 1000);
+            }
+        });
+        document.getElementById('acceptCookiesBtn').addEventListener('click', () => {
+            const banner = document.getElementById('cookieConsentBanner');
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+                localStorage.setItem('cookieConsent', 'accepted');
+            }, 500);
+        });
+        document.getElementById('declineCookiesBtn').addEventListener('click', () => {
+            const banner = document.getElementById('cookieConsentBanner');
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+                localStorage.setItem('cookieConsent', 'declined');
+            }, 500);
         });
     </script>
 </body>
