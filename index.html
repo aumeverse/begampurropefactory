@@ -53,7 +53,7 @@
             --color-border: #E5E7EB;
             --color-success: #10B981;
             --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --max-width: 1440px;          /* Expanded desktop layout limit */
+            --max-width: 1760px;          /* Expanded desktop layout limit */
             --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
@@ -488,10 +488,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* appropriately fill the homepage container */
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
             z-index: -2;
+            background-color: #000000; /* cinematic solid black fallback backdrop */
         }
         .hero-video-slide.active {
             opacity: 1;
@@ -2167,11 +2168,26 @@
 
         /* STRATEGIC PHONE VIEW OVERRIDES */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem; /* Dynamic mobile/tablet alignment to prevent layout squishing */
+            }
+            .nav-container {
+                height: 70px; /* Thinner mobile header container */
+            }
+            .logo-img {
+                height: 48px; /* Compact mobile logo height to prevent overflow wrapping */
+            }
+            .logo-title {
+                font-size: 1rem; /* Proportional text size for mobile viewports */
+            }
+            .logo-tagline {
+                font-size: 0.55rem; /* Proportional tagline size */
+            }
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100px;
+                top: 70px; /* Dynamic drop-down alignment to match mobile header height */
                 left: 0;
                 width: 100%;
                 background-color: #FFFFFF;
@@ -2208,6 +2224,7 @@
             /* Secondary navigation bar visible on mobile only */
             .mobile-sub-nav {
                 display: flex;
+                top: 70px; /* Align directly beneath the compact 70px mobile header */
             }
 
             .hero-section {
@@ -2394,7 +2411,7 @@
         /* DESKTOP HEADER NAVIGATION SCALE-UP FOR LARGE SCREENS */
         @media (min-width: 1200px) {
             header .nav-container {
-                max-width: 100% !important;
+                max-width: var(--max-width) !important; /* Align exactly with the section containers */
                 padding: 0 4rem !important;
                 height: 115px !important;
             }
@@ -2429,7 +2446,7 @@
                 <img src="img/logo.png" alt="Begampur Rope Center Logo" class="logo-img">
                 <div style="display: flex; flex-direction: column;">
                     <span class="logo-title">BEGAMPUR ROPE CENTER</span>
-                    <span class="logo-tagline">Est. 2010 | Hooghly, India</span>
+                    <span class="logo-tagline">Est. 2005 | Hooghly, India</span>
                 </div>
             </a>
             
@@ -2519,14 +2536,14 @@
             <!-- 1. HERO SECTION -->
             <section class="hero-section">
                 <div class="hero-bg-slides" id="heroBgSlides" style="display: none;"></div>
-                <div style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2;">
-                    <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="https://ik.imagekit.io/nojaxohkc/watermark_removed_a18c2738-895e-4943-b97d-1877d869b94d(1).mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_a5b3f52b-67d0-4b6c-bcef-0fa9a65c526d.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_3e7ef132-9c1c-4886-b2b9-bddc77e42cd4.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_b4ab692f-7484-480e-9a92-6741404ff459.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_2c405863-8c86-455f-bde5-9ad00899b556.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_5371bf73-0856-4e8e-8996-fe39d2b376fb.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_5f72f753-3ccf-45b2-981a-2815f188e7c8.mp4"></video>
+                <div style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; background-color: #000000;">
+                    <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="https://ik.imagekit.io/nojaxohkc/watermark_removed_721528b1-8337-473e-838f-a35b692eb5f3.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_6a548f66-9272-4c43-b37f-9511d95b655b.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_cbb511f0-0214-484d-91f0-cf52cdb902db.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_38aaee62-2625-4997-a3b0-dbaa333e825a.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_0e1f626c-3dbb-4496-bca7-9ec480eebbe9.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_d6e76d72-1967-4f0b-b2f3-67211f0fbd05.mp4"></video>
+                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_f7ea8d2f-2760-4f33-84bd-375637f51f84.mp4"></video>
                 </div>
                 
                 <div class="container hero-grid">
@@ -2631,7 +2648,7 @@
                 <div class="container about-grid">
                     <div class="about-info">
                         <span class="section-tag"><span>About Begampur Rope Center</span></span>
-                        <h2 style="font-size: 2.25rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem;">Industrial Excellence Since 2010</h2>
+                        <h2 style="font-size: 2.25rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem;">Industrial Excellence Since 2005</h2>
                         <div class="about-text">
                             <p>
                                 M/S. Begampur Rope Center manufactures high-tensile polymer and natural fiber ropes. Led by Mr. Sekh Mostakin Ali, our Hooghly facility outputs 180 metric tons monthly, combining advanced drawing, twisting, and rope-laying technologies for certified B2B stability.
@@ -4178,7 +4195,7 @@
                 if (viewId === 'home') {
                     activeVideo.play().catch(err => {});
                     if (!videoSequenceTimeout) {
-                        const nextDelay = (activeVideoIndex === videoSlides.length - 1) ? 3000 : 4000;
+                        const nextDelay = (activeVideoIndex === videoSlides.length - 1) ? 2500 : 4000;
                         videoSequenceTimeout = setTimeout(playNextVideo, nextDelay);
                     }
                 } else {
@@ -5016,8 +5033,8 @@
             });
 
             // Set the next trigger timeout dynamically
-            // Only the last video (index 6, which is videoSlides.length - 1) plays for 3 seconds.
-            const nextDelay = (activeVideoIndex === videoSlides.length - 1) ? 3000 : 4000;
+            // Only the last video (index 6, which is videoSlides.length - 1) plays for 2.5 seconds.
+            const nextDelay = (activeVideoIndex === videoSlides.length - 1) ? 2500 : 4000;
             videoSequenceTimeout = setTimeout(playNextVideo, nextDelay);
         }
         
