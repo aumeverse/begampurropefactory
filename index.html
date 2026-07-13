@@ -591,7 +591,7 @@
         /* Thin black border styling for white hero text */
         .hero-title {
             font-size: 5rem;
-            font-weight: 700;
+            font-weight: 800; /* Extra bold display */
             line-height: 0.95;
             letter-spacing: -0.015em;
             margin-bottom: 1.25rem;
@@ -604,7 +604,7 @@
             color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2.25rem;
             max-width: 520px;
-            font-weight: 500;
+            font-weight: 600; /* Semi-bold for better readability */
             -webkit-text-stroke: 0.2px #000000;
             text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000, 0 2px 4px rgba(0,0,0,0.4);
         }
@@ -1209,8 +1209,8 @@
         }
 
         .solution-card {
-            flex: 0 0 320px;
-            height: 240px;
+            flex: 0 0 400px;
+            height: 520px;
             border-radius: 4px;
             position: relative;
             overflow: hidden;
@@ -2174,6 +2174,13 @@
             .nav-container {
                 height: 70px; /* Thinner mobile header container */
             }
+            header .enquire-trigger {
+                display: none !important; /* Hide to prevent mobile header items from overlapping */
+            }
+            .solution-card {
+                flex: 0 0 320px;
+                height: 420px; /* Elegant height on tablet/mobile views */
+            }
             .logo-img {
                 height: 48px; /* Compact mobile logo height to prevent overflow wrapping */
             }
@@ -2377,8 +2384,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .slider-card, .solution-card {
+            .slider-card {
                 flex: 0 0 280px;
+            }
+            .solution-card {
+                flex: 0 0 280px;
+                height: 380px; /* Proportionate height on small mobile views */
             }
 
             .inquiry-drawer-panel {
@@ -2443,7 +2454,7 @@
     <header>
         <div class="container nav-container">
             <a href="#home" class="logo-block">
-                <img src="img/logo.png" alt="Begampur Rope Center Logo" class="logo-img">
+                <img src="https://i.ibb.co/Z6rbGKtV/file-00000000a3cc7209b622bc80a50fd1fc.png" alt="Begampur Rope Center Logo" class="logo-img">
                 <div style="display: flex; flex-direction: column;">
                     <span class="logo-title">BEGAMPUR ROPE CENTER</span>
                     <span class="logo-tagline">Est. 2005 | Hooghly, India</span>
@@ -2537,7 +2548,7 @@
             <section class="hero-section">
                 <div class="hero-bg-slides" id="heroBgSlides" style="display: none;"></div>
                 <div style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; background-color: #000000;">
-                    <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="https://ik.imagekit.io/nojaxohkc/watermark_removed_721528b1-8337-473e-838f-a35b692eb5f3.mp4"></video>
+                    <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="https://ik.imagekit.io/u0dzhryuw/watermark_removed_18e4f2fe-3405-4bbe-8f7b-489057832b02%20(1).mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_6a548f66-9272-4c43-b37f-9511d95b655b.mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_cbb511f0-0214-484d-91f0-cf52cdb902db.mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_38aaee62-2625-4997-a3b0-dbaa333e825a.mp4"></video>
@@ -3539,7 +3550,7 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about-block">
                     <a href="#home" class="logo-block" style="margin-bottom: 1rem;">
-                        <img src="img/logo.png" alt="Begampur Rope Center Logo" class="logo-img">
+                        <img src="https://i.ibb.co/Z6rbGKtV/file-00000000a3cc7209b622bc80a50fd1fc.png" alt="Begampur Rope Center Logo" class="logo-img">
                         <div style="display: flex; flex-direction: column;">
                             <span class="logo-title" style="color: #FFFFFF;">BEGAMPUR ROPE CENTER</span>
                             <span class="logo-tagline" style="color: var(--color-accent);">Est. 2005 | Hooghly, India</span>
