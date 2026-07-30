@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     
     <!-- SEO Meta Tags -->
     <title>Begampur Rope Center | B2B Polymer & Marine Rope Exporter India</title>
@@ -239,21 +239,59 @@
 
         /* HEADER NAVIGATION DROPDOWNS */
         header {
-            position: sticky;
+            position: sticky; /* Changed back to sticky to prevent content overlap */
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             background-color: rgba(250, 249, 246, 0.96); /* Matches Alabaster bg */
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border);
-            transition: var(--transition-smooth);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        header.scrolled {
+            position: fixed; /* Switch to fixed when scrolled to float as an island */
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(100% - 32px, 1600px);
+            border-radius: 40px;
+            background-color: rgba(250, 249, 246, 0.85) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 10px 30px rgba(10,30,61,0.08);
+        }
+        
+        header.scrolled .nav-container {
+            height: 68px !important; /* Made scrolled header even more compact */
+        }
+
+        header.scrolled .logo-img {
+            height: 42px !important; /* Compact logo size when scrolled */
+        }
+        
+        @media (max-width: 768px) {
+            header.scrolled {
+                top: 0;
+                width: 100%;
+                border-radius: 0;
+                transform: none;
+                left: 0;
+            }
+            header.scrolled .nav-container {
+                height: 70px !important;
+            }
         }
 
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 100px;
+            height: 85px; /* Sized down default header height */
+            transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .logo-block {
@@ -264,10 +302,10 @@
         }
 
         .logo-img {
-            height: 75px; /* Enlarged to 75px */
+            height: 62px; /* Sized down default logo height */
             width: auto;
             border-radius: 4px;
-            transition: var(--transition-smooth);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .logo-block:hover .logo-img {
@@ -1384,7 +1422,7 @@
 
         .network-canvas-container {
             width: 100%;
-            height: 480px;
+            aspect-ratio: 1.85 / 1; /* Retain standard 1.85:1 widescreen ratio to prevent cropping */
             position: relative;
             background-color: #FFFFFF;
             border-radius: 4px;
@@ -2421,30 +2459,206 @@
 
         /* DESKTOP HEADER NAVIGATION SCALE-UP FOR LARGE SCREENS */
         @media (min-width: 1200px) {
-            header .nav-container {
+            header:not(.scrolled) .nav-container {
                 max-width: var(--max-width) !important; /* Align exactly with the section containers */
                 padding: 0 4rem !important;
-                height: 115px !important;
+                height: 95px !important; /* Sized down default large screen height */
             }
-            header .logo-img {
-                height: 85px !important;
+            header:not(.scrolled) .logo-img {
+                height: 72px !important; /* Sized down default large screen logo */
             }
-            header .logo-title {
+            header:not(.scrolled) .logo-title {
                 font-size: 1.45rem !important;
             }
-            header .logo-tagline {
+            header:not(.scrolled) .logo-tagline {
                 font-size: 0.75rem !important;
             }
-            header .nav-link {
+            header:not(.scrolled) .nav-link {
                 font-size: 1.05rem !important;
             }
-            header .nav-links {
+            header:not(.scrolled) .nav-links {
                 gap: 3rem !important;
             }
-            header .enquire-trigger {
+            header:not(.scrolled) .enquire-trigger {
                 padding: 0.85rem 1.8rem !important;
                 font-size: 1rem !important;
             }
+        }
+
+        /* 3D Scroll Animations for Sustainability and Network */
+        /* Sustainability Grid and Cards - Compact version */
+        .sustainability-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-top: 2rem;
+            perspective: 1000px;
+            width: 100%;
+        }
+        .sustainability-card {
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.25rem 1rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: rotateX(20deg) translate3d(0, 30px, -30px);
+        }
+        .sustainability-card::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 1px solid rgba(26, 95, 168, 0.05);
+            border-radius: 6px;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sustainability-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10,30,61,0.05);
+            border-color: var(--color-accent);
+        }
+        .sustainability-card:hover::after {
+            border-color: rgba(26, 95, 168, 0.15);
+        }
+        .sustainability-card.visible {
+            opacity: 1;
+            transform: rotateX(0deg) translate3d(0, 0, 0);
+        }
+        .sustainability-card-title {
+            font-size: 0.85rem; /* Sized down card title */
+            font-weight: 600; /* Not bold (semi-bold) */
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .sustainability-card-arrow {
+            font-size: 0.72rem; /* Sized down arrow text */
+            font-weight: 500; /* Not bold */
+            color: var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+        
+        /* Detail Panel Overlay (inside Sustainability Section frame) */
+        .sustainability-detail-panel {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 4px;
+        }
+        .sustainability-detail-panel.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .sustainability-detail-content {
+            max-width: 600px;
+            padding: 2.5rem;
+            text-align: left;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sustainability-detail-panel.active .sustainability-detail-content {
+            transform: translateY(0);
+        }
+        .sustainability-back-btn {
+            margin-bottom: 2rem;
+            padding: 0.5rem 1.25rem;
+            font-weight: 600; /* Not bold */
+            cursor: pointer;
+        }
+        .sustainability-detail-title {
+            font-size: 1.4rem; /* Sized down detail title */
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        .sustainability-detail-desc {
+            font-size: 0.9rem; /* Sized down explanation text */
+            color: #4A5568;
+            line-height: 1.6;
+            font-weight: 400; /* Not bold */
+        }
+        
+        .network-countries-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .network-country-bullet {
+            font-size: 0.92rem; /* Smallened */
+            font-weight: 800;
+            color: var(--color-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .network-country-bullet::before {
+            content: '•';
+            color: var(--color-accent);
+            font-size: 1.3rem; /* Smallened */
+            line-height: 1;
+        }
+        .network-country-bullet.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Hamburger Prompts */
+        .hamburger-prompt {
+            position: absolute;
+            bottom: -45px;
+            right: 0;
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1001;
+            pointer-events: none;
+        }
+        .hamburger-prompt::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            right: 15px;
+            border-width: 0 6px 6px 6px;
+            border-style: solid;
+            border-color: transparent transparent var(--color-primary) transparent;
+        }
+        .hamburger-prompt.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .footer-about-block .logo-img {
+            height: 90px !important;
+            margin-bottom: 0.75rem;
+        }
+        .footer-about-block .logo-title {
+            font-size: 1.45rem !important;
         }
     </style>
 </head>
@@ -2491,12 +2705,13 @@
                 <li><a href="#locationMap" class="nav-link">Location</a></li>
             </ul>
 
-            <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; position: relative;">
                 <button class="btn btn-primary enquire-trigger" style="padding: 0.6rem 1.25rem; font-size: 0.85rem;">Enquire Now</button>
-                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" style="position: relative;">
                     <span></span>
                     <span></span>
                     <span></span>
+                    <div class="hamburger-prompt" id="hamburgerPrompt">Know more</div>
                 </button>
             </div>
         </div>
@@ -2549,10 +2764,7 @@
                 <div class="hero-bg-slides" id="heroBgSlides" style="display: none;"></div>
                 <div style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:-2; background-color: #000000;">
                     <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="https://ik.imagekit.io/u0dzhryuw/watermark_removed_18e4f2fe-3405-4bbe-8f7b-489057832b02%20(1).mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_6a548f66-9272-4c43-b37f-9511d95b655b.mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_cbb511f0-0214-484d-91f0-cf52cdb902db.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_38aaee62-2625-4997-a3b0-dbaa333e825a.mp4"></video>
-                    <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_0e1f626c-3dbb-4496-bca7-9ec480eebbe9.mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_d6e76d72-1967-4f0b-b2f3-67211f0fbd05.mp4"></video>
                     <video class="hero-video-slide" muted playsinline preload="none" data-src="https://ik.imagekit.io/nojaxohkc/watermark_removed_f7ea8d2f-2760-4f33-84bd-375637f51f84.mp4"></video>
                 </div>
@@ -2862,7 +3074,7 @@
                 </div>
             </section>
 
-            <!-- 4. GLOBAL NETWORK -->
+                        <!-- 4. GLOBAL NETWORK -->
             <section class="network-section section-padding scroll-reveal" id="networkSection">
                 <div class="container network-grid">
                     <div class="network-info">
@@ -2870,49 +3082,25 @@
                         <p class="network-desc">
                             Our growing global footprint strategically enables us to serve customers and source materials across 10+ countries.
                         </p>
-
-                        <div class="progress-list">
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span>Americas</span>
-                                    <span>36%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-percent="36%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span>Europe</span>
-                                    <span>30%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-percent="30%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span>Asia</span>
-                                    <span>25%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-percent="25%"></div>
-                                </div>
-                            </div>
-                            <div class="progress-item">
-                                <div class="progress-header">
-                                    <span>Australasia</span>
-                                    <span>9%</span>
-                                </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" data-percent="9%"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="network-canvas-container" id="networkMapContainer">
-                        <canvas id="networkMapCanvas"></canvas>
+                    <div class="network-canvas-wrapper" style="width: 100%;">
+                        <div class="network-countries-list">
+                            <span class="network-country-bullet">Nepal</span>
+                            <span class="network-country-bullet">UAE</span>
+                            <span class="network-country-bullet">United States</span>
+                            <span class="network-country-bullet">Morocco</span>
+                            <span class="network-country-bullet">Madagascar</span>
+                            <span class="network-country-bullet">Tanzania</span>
+                            <span class="network-country-bullet">Bangladesh</span>
+                            <span class="network-country-bullet">Sri Lanka</span>
+                            <span class="network-country-bullet">Bhutan</span>
+                            <span class="network-country-bullet">Kenya</span>
+                            <span class="network-country-bullet">Europe</span>
+                        </div>
+                        <div class="network-canvas-container" id="networkMapContainer">
+                            <canvas id="networkMapCanvas"></canvas>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -3007,27 +3195,38 @@
                 </div>
             </section>
 
-            <!-- 5.5 SUSTAINABLE DEVELOPMENT SECTION -->
-            <section class="section-padding scroll-reveal" id="sustainability" style="background-color: #FFFFFF; border-bottom: 1px solid var(--color-border);">
+                        <!-- 5.5 SUSTAINABLE DEVELOPMENT SECTION -->
+            <section class="section-padding scroll-reveal" id="sustainability" style="background-color: #FFFFFF; border-bottom: 1px solid var(--color-border); position: relative; overflow: hidden;">
                 <div class="container" style="text-align: left;">
                     <span class="section-tag"><span>Sustainability</span></span>
                     <h2 style="font-size: 2.5rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Sustainable Development</h2>
                     
-                    <div style="position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 10px 30px rgba(10,30,61,0.03);">
-                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:-2; background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'); background-size:cover; background-position:center;"></div>
-                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(7,20,39,0.92) 0%, rgba(10,30,61,0.65) 100%); z-index:-1;"></div>
-                        
-                        <div style="position: absolute; bottom: 2.5rem; left: 2.5rem; right: 2.5rem; color: #FFFFFF; max-width: 680px;">
-                            <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; color: #FFFFFF; line-height: 1.4; -webkit-text-stroke: 0.15px #000000; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
-                                We reduce environmental footprints through active polymer recycling, closed-loop water filtration, energy-efficient extrusion, and biodegradable natural cotton alternatives.
-                            </p>
-                            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Polymer Recycling</span>
-                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Low-Loss Extrusion</span>
-                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Organic Cotton</span>
-                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; -webkit-text-stroke: 0.1px #000000; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">• Zero Wastewater</span>
-                            </div>
+                    <div class="sustainability-cards-grid">
+                        <div class="sustainability-card" data-index="0">
+                            <h3 class="sustainability-card-title">Polymer Recycling</h3>
+                            <span class="sustainability-card-arrow">Learn More &rarr;</span>
                         </div>
+                        <div class="sustainability-card" data-index="1">
+                            <h3 class="sustainability-card-title">Low-Loss Extrusion</h3>
+                            <span class="sustainability-card-arrow">Learn More &rarr;</span>
+                        </div>
+                        <div class="sustainability-card" data-index="2">
+                            <h3 class="sustainability-card-title">Organic Alternatives</h3>
+                            <span class="sustainability-card-arrow">Learn More &rarr;</span>
+                        </div>
+                        <div class="sustainability-card" data-index="3">
+                            <h3 class="sustainability-card-title">Zero Wastewater</h3>
+                            <span class="sustainability-card-arrow">Learn More &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sustainability Detail Panel -->
+                <div class="sustainability-detail-panel" id="sustainabilityDetailPanel">
+                    <div class="sustainability-detail-content">
+                        <button class="btn btn-secondary sustainability-back-btn" id="sustainabilityBackBtn">&larr; Back</button>
+                        <h3 class="sustainability-detail-title" id="sustainabilityDetailTitle">Detail Title</h3>
+                        <p class="sustainability-detail-desc" id="sustainabilityDetailDesc">Detail description text...</p>
                     </div>
                 </div>
             </section>
@@ -3115,7 +3314,23 @@
                                 <label class="form-label" for="connMessage" style="color: #FFFFFF;">Message Details *</label>
                                 <textarea id="connMessage" class="form-control connect-control" required placeholder="Mention rope sizing, tons required, delivery port details..." style="min-height: 80px;"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry &rarr;</button>
+                                            <div class="submit-via-block" style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;">
+                    <p style="font-size: 0.9rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.75rem; text-align: center;">Connect via</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" id="submitConnWhatsappBtn" class="btn btn-primary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #25D366; border-color: #25D366; color: #FFFFFF; font-weight: 700; cursor: pointer;">
+                            <svg style="width: 18px; height: 18px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.792-4.382 9.795-9.79.002-2.618-1.01-5.08-2.856-6.93C16.366 2.036 13.9 1.019 11.28 1.019c-5.4.004-9.78 4.39-9.782 9.796-.001 1.57.42 3.102 1.222 4.453L1.69 20.358l5.24-1.374.001-.002.001-.001.002-.001.002-.001.001-.001zm11.534-6.55c-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.668.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                            </svg>
+                            WhatsApp
+                        </button>
+                        <button type="button" id="submitConnEmailBtn" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #EA4335 !important; border-color: #EA4335 !important; color: #FFFFFF !important; font-weight: 700; cursor: pointer; box-shadow: none !important;">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Email
+                        </button>
+                    </div>
+                </div>
                         </form>
                     </div>
 
@@ -3556,7 +3771,7 @@
                             <span class="logo-tagline" style="color: var(--color-accent);">Est. 2005 | Hooghly, India</span>
                         </div>
                     </a>
-                    <p>GST-registered high-tensile polymer and natural fiber rope production. Serving domestic markets and exporting container capacity globally.</p>
+                    <p>India's high-tensile polymer and natural fiber rope production. Serving domestic markets and exporting container capacity globally.</p>
                     <p style="font-size: 0.8rem; opacity: 0.8;">Proprietor: Mr. Sekh Mostakin Ali</p>
                 </div>
 
@@ -3681,7 +3896,23 @@
                     <textarea id="message" class="form-control" placeholder="Enter sizing details, lay twists, color preference, or port requirements..."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Send Bulk Inquiry &rarr;</button>
+                                <div class="submit-via-block" style="margin-top: 1.5rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+                    <p style="font-size: 0.9rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.75rem; text-align: center;">Connect via</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" id="submitWhatsappBtn" class="btn btn-primary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #25D366; border-color: #25D366; color: #FFFFFF; font-weight: 700; cursor: pointer;">
+                            <svg style="width: 18px; height: 18px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.792-4.382 9.795-9.79.002-2.618-1.01-5.08-2.856-6.93C16.366 2.036 13.9 1.019 11.28 1.019c-5.4.004-9.78 4.39-9.782 9.796-.001 1.57.42 3.102 1.222 4.453L1.69 20.358l5.24-1.374.001-.002.001-.001.002-.001.002-.001.001-.001zm11.534-6.55c-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.668.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+                            </svg>
+                            WhatsApp
+                        </button>
+                        <button type="button" id="submitEmailBtn" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 700; cursor: pointer;">
+                            <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Email
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -4318,6 +4549,7 @@
         });
 
         window.addEventListener('scroll', () => {
+            handleHeaderScroll();
             const indicator = document.getElementById('scrollDownIndicator');
             if (indicator) {
                 const rect = indicator.getBoundingClientRect();
@@ -4845,40 +5077,22 @@
         const modalText = document.getElementById('modalText');
         const closeModalBtn = document.getElementById('closeModalBtn');
 
+        // Default submit listener commented out to prevent conflict with multi-channel buttons
+        /*
         inquiryForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.getElementById('fullName').value;
-            const company = document.getElementById('companyName').value;
-            const country = document.getElementById('country').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value || 'N/A';
-            const product = selectElement.value || 'None Selected';
-            const qty = document.getElementById('quantity').value || 'Not Specified';
-            const msg = document.getElementById('message').value || 'No message';
-
-            inquiryDrawer.classList.remove('active');
-
-            modalText.innerHTML = `Thank you, <strong>${name}</strong> from <strong>${company}</strong>.<br><br>
-                Your inquiry for <strong>${qty}</strong> of <strong>${product}</strong> is registered.<br><br>
-                Our B2B representative will contact you at <strong>${phone}</strong> or <strong>${email}</strong> shortly.`;
-            
-            successModal.classList.add('active');
-            inquiryForm.reset();
+            ...
         });
+        */
 
         const connectForm = document.getElementById('connectForm');
+        // Default connect submit listener commented out to prevent conflict with split buttons
+        /*
         connectForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.getElementById('connName').value;
-            const company = document.getElementById('connCompany').value;
-            const msg = document.getElementById('connMessage').value;
-
-            modalText.innerHTML = `Thank you, <strong>${name}</strong> from <strong>${company}</strong>.<br><br>
-                Your request has been received. Our sales office will reach out within two hours.`;
-            
-            successModal.classList.add('active');
-            connectForm.reset();
+            ...
         });
+        */
 
         closeModalBtn.addEventListener('click', () => {
             successModal.classList.remove('active');
@@ -5105,6 +5319,7 @@
         const scrollIndicator = document.getElementById('scrollDownIndicator');
         if (scrollIndicator) {
             window.addEventListener('scroll', () => {
+            handleHeaderScroll();
                 if (window.scrollY > 15) {
                     scrollIndicator.style.opacity = '0';
                     scrollIndicator.style.visibility = 'hidden';
@@ -5116,6 +5331,295 @@
                 }
             }, { passive: true });
         }
+
+        // ----------------------------------------------------
+        // ADVANCED UPGRADES JS LOGIC
+        // ----------------------------------------------------
+        
+        // Block viewport scale-out and zoom system completely
+        document.addEventListener('touchstart', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function(event) {
+            event.preventDefault();
+        }, { passive: false });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // 3D Scroll Animations for Sustainability Cards
+        function handleSustainabilityScroll() {
+            const section = document.getElementById('sustainability');
+            if (!section) return;
+            const rect = section.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            const inView = rect.top < viewHeight && rect.bottom > 0;
+            const cards = section.querySelectorAll('.sustainability-card');
+            
+            if (inView) {
+                cards.forEach((card, index) => {
+                    const delay = index * 120;
+                    const triggerPoint = viewHeight * 0.85;
+                    const exitPoint = viewHeight * 0.15;
+                    if (rect.top < triggerPoint && rect.bottom > exitPoint) {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, delay);
+                    } else {
+                        card.classList.remove('visible');
+                    }
+                });
+            } else {
+                cards.forEach(c => c.classList.remove('visible'));
+            }
+        }
+
+
+        // Multi-Channel Connect Form Submission
+        function initConnectForm() {
+            const form = document.getElementById('connectForm');
+            const submitWhatsapp = document.getElementById('submitConnWhatsappBtn');
+            const submitEmail = document.getElementById('submitConnEmailBtn');
+            const successM = document.getElementById('successModal');
+            const modalTxt = document.getElementById('modalText');
+            
+            if (!form || !submitWhatsapp || !submitEmail) return;
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+
+            function getFormDetails() {
+                return {
+                    name: document.getElementById('connName').value,
+                    company: document.getElementById('connCompany').value,
+                    msg: document.getElementById('connMessage').value
+                };
+            }
+
+            submitWhatsapp.addEventListener('click', () => {
+                if (form.reportValidity()) {
+                    const data = getFormDetails();
+                    const text = `Hello Begampur Rope Center,\n\nI would like to connect:\n\n*Name:* ${data.name}\n*Company:* ${data.company}\n*Message:* ${data.msg}`;
+                    
+                    const url = `https://wa.me/918071792828?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank');
+
+                    modalTxt.innerHTML = `Thank you, <strong>${data.name}</strong> from <strong>${data.company}</strong>.<br><br>
+                        Your message has been prepared for WhatsApp redirection.<br><br>
+                        Our B2B representative will contact you shortly.`;
+                    successM.classList.add('active');
+                    form.reset();
+                }
+            });
+
+            submitEmail.addEventListener('click', () => {
+                if (form.reportValidity()) {
+                    const data = getFormDetails();
+                    const subject = `Connection Request from ${data.company} - ${data.name}`;
+                    const body = `Hello Begampur Rope Center,\n\nI would like to connect:\n\nName: ${data.name}\nCompany: ${data.company}\nMessage: ${data.msg}`;
+                    
+                    const url = `mailto:begampurropecenter@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.open(url, '_blank');
+
+                    modalTxt.innerHTML = `Thank you, <strong>${data.name}</strong> from <strong>${data.company}</strong>.<br><br>
+                        Your message has been prepared for Email redirection to begampurropecenter@gmail.com.<br><br>
+                        Our B2B representative will contact you shortly.`;
+                    successM.classList.add('active');
+                    form.reset();
+                }
+            });
+        }
+
+        // Initialize Sustainability Cards Detail Panel Clicks
+        function initSustainabilityCards() {
+            const cards = document.querySelectorAll('.sustainability-card');
+            const panel = document.getElementById('sustainabilityDetailPanel');
+            const backBtn = document.getElementById('sustainabilityBackBtn');
+            const title = document.getElementById('sustainabilityDetailTitle');
+            const desc = document.getElementById('sustainabilityDetailDesc');
+            
+            const details = [
+                {
+                    title: "Polymer Recycling",
+                    desc: "Active recycling programs reduce our environmental footprint by processing post-industrial polymer waste, turning it back into high-tensile export-grade raw spools."
+                },
+                {
+                    title: "Low-Loss Extrusion",
+                    desc: "Advanced energy-efficient extrusion lines utilize thermodynamic control systems to minimize heat dissipation and ensure near-zero raw material loss."
+                },
+                {
+                    title: "Organic Alternatives",
+                    desc: "We supply biodegradable cotton lines, natural jute cords, and organic fiber solutions for marine, agriculture, and commercial packing needs."
+                },
+                {
+                    title: "Zero Wastewater",
+                    desc: "Closed-loop filtration channels recycle 100% of internal machinery cooling water, completely preventing toxic chemical runoff or local river contamination."
+                }
+            ];
+
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const idx = parseInt(card.getAttribute('data-index'));
+                    if (!isNaN(idx) && details[idx]) {
+                        title.textContent = details[idx].title;
+                        desc.textContent = details[idx].desc;
+                        panel.classList.add('active');
+                    }
+                });
+            });
+
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    panel.classList.remove('active');
+                });
+            }
+        }
+
+        // 3D Scroll Animations for Network Countries
+        function handleNetworkScroll() {
+            const section = document.getElementById('networkSection');
+            if (!section) return;
+            const rect = section.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            const inView = rect.top < viewHeight && rect.bottom > 0;
+            const bullets = section.querySelectorAll('.network-country-bullet');
+            
+            if (inView) {
+                bullets.forEach((bullet, index) => {
+                    const delay = index * 80;
+                    const triggerPoint = viewHeight * 0.85;
+                    const exitPoint = viewHeight * 0.15;
+                    if (rect.top < triggerPoint && rect.bottom > exitPoint) {
+                        setTimeout(() => {
+                            bullet.classList.add('visible');
+                        }, delay);
+                    } else {
+                        bullet.classList.remove('visible');
+                    }
+                });
+            } else {
+                bullets.forEach(b => b.classList.remove('visible'));
+            }
+        }
+
+        // Mobile Menu Tooltip Prompt
+        function initHamburgerPrompt() {
+            const prompt = document.getElementById('hamburgerPrompt');
+            if (!prompt) return;
+            
+            setInterval(() => {
+                if (window.innerWidth <= 1024) {
+                    prompt.classList.add('active');
+                    setTimeout(() => {
+                        prompt.classList.remove('active');
+                    }, 2000);
+                }
+            }, 15000);
+        }
+
+        // Multi-Channel Form Submission
+        function initMultiChannelForm() {
+            const form = document.getElementById('inquiryForm');
+            const submitWhatsapp = document.getElementById('submitWhatsappBtn');
+            const submitEmail = document.getElementById('submitEmailBtn');
+            const selEl = document.getElementById('productInterest');
+            const successM = document.getElementById('successModal');
+            const modalTxt = document.getElementById('modalText');
+            
+            if (!form || !submitWhatsapp || !submitEmail) return;
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+
+            function getFormDetails() {
+                return {
+                    name: document.getElementById('fullName').value,
+                    company: document.getElementById('companyName').value,
+                    country: document.getElementById('country').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value || 'N/A',
+                    product: selEl.value || 'None Selected',
+                    qty: document.getElementById('quantity').value || 'Not Specified',
+                    msg: document.getElementById('message').value || 'No message'
+                };
+            }
+
+            submitWhatsapp.addEventListener('click', () => {
+                if (form.reportValidity()) {
+                    const data = getFormDetails();
+                    const text = `Hello Begampur Rope Center,\n\nI would like to submit an inquiry:\n\n*Name:* ${data.name}\n*Company:* ${data.company}\n*Country:* ${data.country}\n*Phone:* ${data.phone}\n*Email:* ${data.email}\n*Product:* ${data.product}\n*Quantity:* ${data.qty}\n*Message:* ${data.msg}`;
+                    
+                    const url = `https://wa.me/918071792828?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank');
+
+                    document.getElementById('inquiryDrawer').classList.remove('active');
+                    modalTxt.innerHTML = `Thank you, <strong>${data.name}</strong> from <strong>${data.company}</strong>.<br><br>
+                        Your inquiry has been prepared for WhatsApp redirection.<br><br>
+                        Our B2B representative will contact you at <strong>${data.phone}</strong> shortly.`;
+                    successM.classList.add('active');
+                    form.reset();
+                }
+            });
+
+            submitEmail.addEventListener('click', () => {
+                if (form.reportValidity()) {
+                    const data = getFormDetails();
+                    const subject = `Inquiry from ${data.company} - ${data.name}`;
+                    const body = `Hello Begampur Rope Center,\n\nI would like to submit an inquiry:\n\nName: ${data.name}\nCompany: ${data.company}\nCountry: ${data.country}\nPhone: ${data.phone}\nEmail: ${data.email}\nProduct: ${data.product}\nQuantity: ${data.qty}\nMessage: ${data.msg}`;
+                    
+                    const url = `mailto:begampurropecenter@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.open(url, '_blank');
+
+                    document.getElementById('inquiryDrawer').classList.remove('active');
+                    modalTxt.innerHTML = `Thank you, <strong>${data.name}</strong> from <strong>${data.company}</strong>.<br><br>
+                        Your inquiry has been prepared for Email redirection.<br><br>
+                        Our B2B representative will contact you at <strong>${data.phone}</strong> shortly.`;
+                    successM.classList.add('active');
+                    form.reset();
+                }
+            });
+        }
+
+        // Initialize scroll observers and listeners
+        window.addEventListener('scroll', () => {
+            handleHeaderScroll();
+            handleHeaderScroll();
+        handleSustainabilityScroll();
+            handleNetworkScroll();
+        }, { passive: true });
+
+        // Header scroll handler for morphing Island style navigation
+        function handleHeaderScroll() {
+            const header = document.querySelector('header');
+            if (!header) return;
+            if (window.scrollY > 30) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Run initial checks
+        handleHeaderScroll();
+        handleSustainabilityScroll();
+        handleNetworkScroll();
+        initHamburgerPrompt();
+        initMultiChannelForm();
+        initSustainabilityCards();
+        initConnectForm();
     </script>
 </body>
 </html>
