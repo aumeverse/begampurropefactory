@@ -824,6 +824,8 @@
             border-bottom: 1px solid var(--color-border);
             position: relative;
             transform: translateZ(20px);
+            background-size: cover;
+            background-position: center;
         }
 
         .card-visual strong {
@@ -1336,6 +1338,25 @@
             line-height: 1.3;
             transform: translateZ(15px);
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .solution-card-notch {
+            background: rgba(7, 20, 39, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 1.25rem;
+            margin: 0 -1.25rem -1.5rem -1.25rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            z-index: 2;
+            transition: background 0.3s ease;
+            transform: translateZ(15px);
+        }
+
+        .solution-card:hover .solution-card-notch {
+            background: rgba(168, 50, 50, 0.88);
         }
 
         /* GLOBAL NETWORK */
@@ -2958,105 +2979,113 @@
                             <!-- 1. Agriculture -->
                             <div class="solution-card" onclick="window.location.hash='#solution-agriculture-farming'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/fzCnbhB0/Greenhouse-with-ropes-India-202607311049.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/hJLPV4ss/Generate-professional-visual-ups-202607311048.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/LDMP0yNc/Generate-realistic-visuals-upsca-202607311048.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Agriculture & Farming</h3>
-                                <p class="solution-card-desc">UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Agriculture & Farming</h3>
+                                    <p class="solution-card-desc">UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 2. Marine Mooring -->
                             <div class="solution-card" onclick="window.location.hash='#solution-marine-mooring'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/39VGdfGZ/20250720-inshore-cast-netting.webp');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1505244208262-19130104f175?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/HfX14nhy/Container-ship-in-sea-202607311034.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/W4GcgHxD/Indian-dockyard-ships-tied-ropes-202607311033.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/fGtMYtns/Indian-dockyard-ships-ropes-sing-202607311033.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Marine & Mooring</h3>
-                                <p class="solution-card-desc">Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Marine & Mooring</h3>
+                                    <p class="solution-card-desc">Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 3. Industrial -->
                             <div class="solution-card" onclick="window.location.hash='#solution-industrial-usage'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/0RNffwdK/Crane-carrying-cargo-containers-202607311104.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/W4nrdV1h/Generate-upscaled-image-202607311104.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/RGxzpcNG/Rope-tying-wooden-box-transport-202607311104.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Industrial Usage</h3>
-                                <p class="solution-card-desc">Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Industrial Usage</h3>
+                                    <p class="solution-card-desc">Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 4. Cargo Securing -->
                             <div class="solution-card" onclick="window.location.hash='#solution-cargo-transport'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/0RdJ5Rrq/Truck-on-Indian-roads-dockyard-202607311040.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/6cH1MZQq/make-it-a-little-closeup-202607311040.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/R5ND1Kb/cargo-image-202607311040.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Cargo Transport</h3>
-                                <p class="solution-card-desc">High-friction truck lashing ropes and container securing lines built for trans-continental transit.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Cargo Transport</h3>
+                                    <p class="solution-card-desc">High-friction truck lashing ropes and container securing lines built for trans-continental transit.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 5. Safety Nets -->
                             <div class="solution-card" onclick="window.location.hash='#solution-safety-applications'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/HLBz283L/Safety-Climbing-Rope-Application-1.webp');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/ztGKT5D/images-1.jpg');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/XxnXGc7T/Indian-construction-site-with-cr-202607311054.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/BK7JrmPZ/Generate-upscale-image-202607311054.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/MDLgM3jM/Indian-man-cleaning-glass-building-202607311054.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Safety Applications</h3>
-                                <p class="solution-card-desc">High-impact debris protection netting systems and double-knot mesh panels for personnel safety.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Safety Applications</h3>
+                                    <p class="solution-card-desc">High-impact debris protection netting systems and double-knot mesh panels for personnel safety.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 6. Construction scaffold -->
                             <div class="solution-card" onclick="window.location.hash='#solution-construction'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1534080391025-09795d197a5b?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/R4Q3rqkg/Indian-construction-site-with-wo-202607311028.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/351pLPnR/Construction-site-with-rope-202607311027.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/39V8PDfD/Indian-construction-site-with-wo-202607311027.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Construction</h3>
-                                <p class="solution-card-desc">Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Construction</h3>
+                                    <p class="solution-card-desc">Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 7. Household drying line -->
                             <div class="solution-card" onclick="window.location.hash='#solution-household-general'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/Q39Yz03M/Box-tied-with-plastic-rope-202607311058.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/N2NDx0V7/Plastic-ropes-used-in-home-202607311058-1.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/LXk71xxB/Plastic-ropes-used-in-home-202607311058.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Household & General</h3>
-                                <p class="solution-card-desc">Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Household & General</h3>
+                                    <p class="solution-card-desc">Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- 8. Commercial Fishing -->
                             <div class="solution-card" onclick="window.location.hash='#solution-marine-fishing'">
                                 <div class="solution-card-bg-slideshow">
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&w=600&q=80');"></div>
-                                    <div class="solution-card-slide" style="background-image: url('https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=600&q=80');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/39VGdfGZ/20250720-inshore-cast-netting.webp');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/W4GcgHxD/Indian-dockyard-ships-tied-ropes-202607311033.jpg');"></div>
+                                    <div class="solution-card-slide" style="background-image: url('https://i.ibb.co/fGtMYtns/Indian-dockyard-ships-ropes-sing-202607311033.jpg');"></div>
                                 </div>
-                                <div class="solution-card-overlay"></div>
-                                <h3 class="solution-card-title">Marine & Fishing</h3>
-                                <p class="solution-card-desc">Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.</p>
-                                <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.75rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: translateZ(10px);">Know More &rarr;</span>
+                                <div class="solution-card-notch">
+                                    <h3 class="solution-card-title">Marine & Fishing</h3>
+                                    <p class="solution-card-desc">Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.</p>
+                                    <span class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.25rem; align-self: flex-start; box-shadow: 0 2px 0 var(--color-accent-shadow); transform: none;">Know More &rarr;</span>
+                                </div>
                             </div>
 
                             <!-- Talk to Expert Card -->
@@ -3123,21 +3152,21 @@
                         <div class="slider-track" id="prodSliderTrack">
                             
                             <div class="slider-card">
-                                <div class="card-visual">
-                                    <strong>HDPE Monofilament Ropes</strong>
-                                    <span class="card-visual-desc">High-density monofilament polymer cordage</span>
+                                <div class="card-visual" data-images="https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png,https://i.ibb.co/DdqB5q2/Generate-professional-product-image-202607310934.jpg" data-active-index="0" style="background-image: url('https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png');">
+                                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(7, 20, 39, 0.55); z-index: 1;"></div>
+                                    <strong style="color: #FFFFFF;">HDPE Monofilament (Africa Export)</strong>
                                 </div>
                                 <div class="card-info">
-                                    <h3 class="card-title">HDPE Monofilament</h3>
+                                    <h3 class="card-title">HDPE Monofilament (Africa Export)</h3>
                                     <p class="card-desc">UV stabilized, zero water absorption polymer fibers for extreme marine and agricultural tasks.</p>
                                     <a href="#product-hdpe-monofilament" class="card-btn">View Detailed Specs</a>
                                 </div>
                             </div>
 
                             <div class="slider-card">
-                                <div class="card-visual">
-                                    <strong>PP Ropes (Polypropylene)</strong>
-                                    <span class="card-visual-desc">High breaking strength polypropylene packaging ropes</span>
+                                <div class="card-visual" data-images="https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg,https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg,https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg,https://i.ibb.co/Ng8wk7kb/Product-consistency-maintained-c-202607301442.jpg" data-active-index="0" style="background-image: url('https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg');">
+                                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(7, 20, 39, 0.55); z-index: 1;"></div>
+                                    <strong style="color: #FFFFFF;">Polypropylene (PP)</strong>
                                 </div>
                                 <div class="card-info">
                                     <h3 class="card-title">PP Rope (Polypropylene)</h3>
@@ -3147,9 +3176,9 @@
                             </div>
 
                             <div class="slider-card">
-                                <div class="card-visual">
-                                    <strong>Marine Mooring Ropes</strong>
-                                    <span class="card-visual-desc">Heavy rot-proof ship mooring ropes</span>
+                                <div class="card-visual" data-images="https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg,https://i.ibb.co/RWTXWZ0/marine-ropes.webp,https://i.ibb.co/KcpRBtDf/image-png-202607310238.jpg" data-active-index="0" style="background-image: url('https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg');">
+                                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(7, 20, 39, 0.55); z-index: 1;"></div>
+                                    <strong style="color: #FFFFFF;">Marine Mooring</strong>
                                 </div>
                                 <div class="card-info">
                                     <h3 class="card-title">Marine Polypropylene</h3>
@@ -3159,9 +3188,9 @@
                             </div>
 
                             <div class="slider-card">
-                                <div class="card-visual">
-                                    <strong>Braided Cotton Ropes</strong>
-                                    <span class="card-visual-desc">Soft biodegradable cotton cord coils</span>
+                                <div class="card-visual" data-images="https://i.ibb.co/DHdcRpWj/JKT1931.webp,https://i.ibb.co/9ktyWwSS/Professional-product-shoot-image-202607310230.jpg,https://i.ibb.co/mxW6dZB/Product-shoot-image-consistency-202607310230.jpg" data-active-index="0" style="background-image: url('https://i.ibb.co/DHdcRpWj/JKT1931.webp');">
+                                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(7, 20, 39, 0.55); z-index: 1;"></div>
+                                    <strong style="color: #FFFFFF;">Braided Cotton</strong>
                                 </div>
                                 <div class="card-info">
                                     <h3 class="card-title">Cotton Ropes</h3>
@@ -3171,12 +3200,12 @@
                             </div>
 
                             <div class="slider-card">
-                                <div class="card-visual">
-                                    <strong>Construction Safety Nets</strong>
-                                    <span class="card-visual-desc">High-tenacity fall arrest netting panels</span>
+                                <div class="card-visual" data-images="https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg,https://i.ibb.co/VYdsLRxb/Professional-product-image-visua-2-K-202607301045.jpg,https://i.ibb.co/TBVfwdwj/Generate-professional-product-image-2-K-202607301045.jpg" data-active-index="0" style="background-image: url('https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg');">
+                                    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(7, 20, 39, 0.55); z-index: 1;"></div>
+                                    <strong style="color: #FFFFFF;">Safety Nets (Africa Export)</strong>
                                 </div>
                                 <div class="card-info">
-                                    <h3 class="card-title">Safety Nets</h3>
+                                    <h3 class="card-title">Safety Nets (Africa Export)</h3>
                                     <p class="card-desc">Heavy-gauge mesh border nets engineered to absorb structural impacts and catch building site debris.</p>
                                     <a href="#product-safety-net" class="card-btn">View Detailed Specs</a>
                                 </div>
@@ -3541,7 +3570,7 @@
                     <div class="solutions-directory-grid">
                         
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-agriculture-farming'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/21MqqbT6/everything-appropriately-through-2-K-202607301043.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Agriculture & Farming</h3>
                                 <p class="solutions-directory-desc">UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.</p>
@@ -3550,7 +3579,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-marine-mooring'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/39VGdfGZ/20250720-inshore-cast-netting.webp');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Marine & Mooring</h3>
                                 <p class="solutions-directory-desc">Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.</p>
@@ -3559,7 +3588,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-industrial-usage'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/mFcGfmWv/Professional-rope-product-shoot-202607301455.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Industrial Usage</h3>
                                 <p class="solutions-directory-desc">Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.</p>
@@ -3568,7 +3597,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-cargo-transport'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Cargo Transport</h3>
                                 <p class="solutions-directory-desc">High-friction truck lashing ropes and container securing lines built for trans-continental transit.</p>
@@ -3577,7 +3606,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-safety-applications'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Safety Applications</h3>
                                 <p class="solutions-directory-desc">High-impact debris protection netting systems and double-knot mesh panels for personnel safety.</p>
@@ -3586,7 +3615,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-construction'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Construction</h3>
                                 <p class="solutions-directory-desc">Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.</p>
@@ -3595,7 +3624,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-household-general'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/7NdtkL4k/Product-consistency-close-up-shot-2-K-202607301044.jpg');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Household & General</h3>
                                 <p class="solutions-directory-desc">Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.</p>
@@ -3604,7 +3633,7 @@
                         </div>
 
                         <div class="solutions-directory-card" onclick="window.location.hash='#solution-marine-fishing'">
-                            <div class="solutions-directory-img" style="background-image: url('https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=500&q=80');"></div>
+                            <div class="solutions-directory-img" style="background-image: url('https://i.ibb.co/39VGdfGZ/20250720-inshore-cast-netting.webp');"></div>
                             <div class="solutions-directory-info">
                                 <h3 class="solutions-directory-title">Marine & Fishing</h3>
                                 <p class="solutions-directory-desc">Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.</p>
@@ -3649,25 +3678,21 @@
             <section class="section-padding detail-view-container">
                 <div class="container">
                     
-                    <div class="breadcrumb">
+                    <div class="breadcrumb" style="margin-bottom: 2rem;">
                         <a href="#home">Home</a> &rarr; <a href="#solutions">Solutions</a> &rarr; <span id="solution-breadcrumb-name" style="color: var(--color-text);">Detail</span>
                     </div>
 
-                    <div class="solution-detail-header" id="solDetailHeader">
-                        <div class="solution-detail-header-bg" id="solDetailHeaderBg"></div>
-                        <div class="solution-detail-header-overlay"></div>
-                        <div style="position: relative; z-index: 2;">
-                            <h1 class="solution-detail-headline" id="solDetailTitle">Solution Title</h1>
-                            <p class="solution-detail-tagline" id="solDetailTagline">Use case subheadline</p>
-                        </div>
+                    <div class="solution-text-header" style="margin-bottom: 2.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1.5rem;">
+                        <h1 class="solution-detail-headline" id="solDetailTitle" style="font-size: 2.25rem; font-weight: 800; color: var(--color-primary); line-height: 1.2; margin-bottom: 0.5rem; text-shadow: none; -webkit-text-stroke: 0;">Solution Title</h1>
+                        <p class="solution-detail-tagline" id="solDetailTagline" style="font-size: 1.1rem; color: var(--color-accent); font-weight: 600; margin: 0; text-shadow: none; -webkit-text-stroke: 0;">Use case subheadline</p>
                     </div>
 
                     <div class="solution-detail-grid">
                         <div class="solution-detail-info">
                             <h2 style="font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem;">Industry Requirement & Solution</h2>
-                            <p id="solDetailDesc" style="color: var(--color-text); margin-bottom: 2rem;">Detailed B2B context about this industry.</p>
+                            <p id="solDetailDesc" style="color: var(--color-text); margin-bottom: 2.5rem;">Detailed B2B context about this industry.</p>
                             
-                            <h3 style="font-size: 1.25rem; color: var(--color-primary); margin-bottom: 1rem;">Recommended Industrial Products</h3>
+                            <h3 style="font-size: 1.25rem; color: var(--color-primary); margin-bottom: 1.5rem;">Recommended Industrial Products</h3>
                             <div class="solution-products-list" id="solDetailProductsList"></div>
                         </div>
 
@@ -3699,6 +3724,7 @@
                     <div class="product-detail-grid">
                         <div class="product-image-card">
                             <div class="product-image-wrap" id="prodDetailImage"></div>
+                            <div class="product-gallery-thumbnails" id="prodDetailThumbnails" style="display: flex; gap: 0.5rem; margin-top: 0.75rem; margin-bottom: 1.5rem; overflow-x: auto;"></div>
                             <table class="product-spec-table" id="prodDetailSpecsTable"></table>
                         </div>
 
@@ -3867,8 +3893,8 @@
                         <label class="form-label" for="productInterest">Product Interested In</label>
                         <select id="productInterest" class="form-control">
                             <option value="" selected>Select a Product (Optional)</option>
-                            <option value="HDPE Monofilament Rope">HDPE Monofilament Rope</option>
-                            <option value="Monofilament Super Rope">Monofilament Super Rope</option>
+                            <option value="HDPE Monofilament Rope (Africa Export)">HDPE Monofilament Rope (Africa Export)</option>
+                            <option value="Monofilament Super Rope (Africa Export)">Monofilament Super Rope (Africa Export)</option>
                             <option value="Polyethylene Monofilament Rope">Polyethylene Monofilament Rope</option>
                             <option value="HDPE Mono Rope">HDPE Mono Rope</option>
                             <option value="PP Rope (Polypropylene)">PP Rope (Polypropylene)</option>
@@ -3878,9 +3904,9 @@
                             <option value="Twin Rope">Twin Rope</option>
                             <option value="Cloth Drying Ropes">Cloth Drying Ropes</option>
                             <option value="PP Cord">PP Cord</option>
-                            <option value="Monofilament Yarn">Monofilament Yarn</option>
+                            <option value="Monoplament Yarn">Monoplament Yarn</option>
                             <option value="Cotton Ropes">Cotton Ropes</option>
-                            <option value="Safety Nets">Safety Nets</option>
+                            <option value="Safety Nets (Africa Export)">Safety Nets (Africa Export)</option>
                             <option value="PP Rope (Export Grade)">PP Rope (Export Grade)</option>
                             <option value="PE Rope (Africa Export)">PE Rope (Africa Export)</option>
                         </select>
@@ -3905,7 +3931,7 @@
                             </svg>
                             WhatsApp
                         </button>
-                        <button type="button" id="submitEmailBtn" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 700; cursor: pointer;">
+                        <button type="button" id="submitEmailBtn" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: #EA4335 !important; border-color: #EA4335 !important; color: #FFFFFF !important; font-weight: 700; cursor: pointer; box-shadow: none !important;">
                             <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
@@ -3948,12 +3974,16 @@
     <script>
         const productsData = {
             "hdpe-monofilament": {
-                title: "HDPE Monofilament Rope",
+                title: "HDPE Monofilament Ropes (Africa Export)",
                 category: "HDPE Monofilament",
                 catId: "hdpe",
-                image: "https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png",
                 desc: "UV stabilized, zero water absorption polymer monofilament rope engineered for outdoor weathering.",
                 longDesc: "Our High-Density Polyethylene (HDPE) Monofilament Ropes are manufactured using premium-grade virgin resins combined with highly effective UV-inhibitor compounds. Designed for maximum longevity, these ropes absorb zero water, making them resistant to rotting, mold, and chemical acids. They are highly favored by B2B buyers in agricultural crop trellising and marine boundary setups.",
+                images: [
+                    "https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png",
+                    "https://i.ibb.co/DdqB5q2/Generate-professional-product-image-202607310934.jpg"
+                ],
                 specs: {
                     "Diameter Range": "2 mm to 24 mm",
                     "Breaking Strength": "120 kg to 12,500 kg",
@@ -3965,12 +3995,16 @@
                 }
             },
             "monofilament-super": {
-                title: "Monofilament Super Rope",
+                title: "Monofilament Super Rope (Africa Export)",
                 category: "HDPE Monofilament",
                 catId: "hdpe",
-                image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/LMhstHS/Gemini-Generated-Image-tilnfytilnfytiln.png",
                 desc: "Severe load-bearing monofilament line with enhanced abrasion shielding.",
                 longDesc: "The Monofilament Super Rope represents our top-tier heavy-duty polymer line. Extrided with a modified high-tensile HDPE formulation, it features a tighter lay structure that significantly enhances knot security and wear-resistance. It is heavily utilized in commercial deep-sea trawler rigging, maritime harbor mooring, and heavy industrial cargo securement.",
+                images: [
+                    "https://i.ibb.co/LMhstHS/Gemini-Generated-Image-tilnfytilnfytiln.png",
+                    "https://i.ibb.co/KxFVKByX/Generate-professional-product-image-2-K-202607301043.jpg"
+                ],
                 specs: {
                     "Diameter Range": "6 mm to 36 mm",
                     "Breaking Strength": "520 kg to 28,000 kg",
@@ -3985,9 +4019,13 @@
                 title: "Polyethylene Monofilament Rope",
                 category: "HDPE Monofilament",
                 catId: "hdpe",
-                image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/qYRjVbbC/Upscaled-product-image-consistency-2-K-202607301045.jpg",
                 desc: "Highly flexible polyethylene monofilament rope coils designed for global horticulture support.",
                 longDesc: "Our Polyethylene Monofilament Ropes offer exceptional flexibility combined with structural weather resistance. They are manufactured under controlled heat settings to prevent shrinkage and cracking in dry regions. Best suited for greenhouse setups, agricultural climbing vine netting, and generic packaging lines.",
+                images: [
+                    "https://i.ibb.co/qYRjVbbC/Upscaled-product-image-consistency-2-K-202607301045.jpg",
+                    "https://i.ibb.co/vCdVQYns/upscale-the-image-202607310245.jpg"
+                ],
                 specs: {
                     "Diameter Range": "3 mm to 32 mm",
                     "Breaking Strength": "180 kg to 18,500 kg",
@@ -4001,9 +4039,13 @@
                 title: "HDPE Mono Rope",
                 category: "HDPE Monofilament",
                 catId: "hdpe",
-                image: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/9mp9KLF5/Gemini-Generated-Image-kdd8a9kdd8a9kdd8.png",
                 desc: "Sleek single filament HDPE utility rope bundle with high knot retention.",
                 longDesc: "The HDPE Mono Rope is a lightweight single-filament laying line optimized for high-flexibility applications. Its smooth exterior texture permits quick knotting and unknotting without causing structural fraying. Commonly deployed for border nets, vegetable crop supports, and light packaging cargo.",
+                images: [
+                    "https://i.ibb.co/9mp9KLF5/Gemini-Generated-Image-kdd8a9kdd8a9kdd8.png",
+                    "https://i.ibb.co/Q7n7VLDr/Generate-professional-product-image-2-K-202607301043-1.jpg"
+                ],
                 specs: {
                     "Diameter Range": "1.5 mm to 12 mm",
                     "Breaking Strength": "90 kg to 3,200 kg",
@@ -4017,9 +4059,15 @@
                 title: "PP Rope (Polypropylene)",
                 category: "Polypropylene",
                 catId: "pp",
-                image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
                 desc: "Extremely lightweight polypropylene ropes with high breaking strength and friction resistance.",
                 longDesc: "Our Polypropylene (PP) Ropes are the workhorse of B2B logistics. Engineered to deliver exceptional tensile strength while maintaining a lightweight structure, these ropes resist chemicals, solvents, acids, and wear. They are heavily utilized in construction scaffolding lashing, heavy truck tying, and general cargo lifting.",
+                images: [
+                    "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
+                    "https://i.ibb.co/Ng8wk7kb/Product-consistency-maintained-c-202607301442.jpg"
+                ],
                 specs: {
                     "Diameter Range": "2 mm to 40 mm",
                     "Breaking Strength": "150 kg to 32,500 kg",
@@ -4033,9 +4081,16 @@
                 title: "Plastic Ropes",
                 category: "Polypropylene",
                 catId: "pp",
-                image: "https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg",
                 desc: "General-purpose synthetic plastic ropes outsourced for B2B wholesale retail stock.",
                 longDesc: "Our standard Plastic Ropes are extruded using premium recycled and virgin synthetic resins. They provide a cost-effective, high-reliability bundling solution for domestic wholesale markets, retail distribution lines, and basic warehouse lashing requirements.",
+                images: [
+                    "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg",
+                    "https://i.ibb.co/F4TwPbkD/Generate-upscaled-product-image-2-K-202607301046.jpg",
+                    "https://i.ibb.co/Lzvkr8Zd/Upscale-generate-professional-vi-202607301138-1.jpg",
+                    "https://i.ibb.co/d0DkR6XC/Upscale-generate-professional-vi-202607301138.jpg",
+                    "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg"
+                ],
                 specs: {
                     "Diameter Range": "1.5 mm to 20 mm",
                     "Breaking Strength": "80 kg to 7,500 kg",
@@ -4048,9 +4103,16 @@
                 title: "Multi Colour Plastic Ropes",
                 category: "Polypropylene",
                 catId: "pp",
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg",
                 desc: "Vibrant multi-shade plastic ropes extruded for consumer packaging.",
                 longDesc: "These Multicolored Plastic Ropes combine B2B utility with vibrant aesthetic options. Specially formulated for retail logistics and domestic transport tying, they provide excellent knotting capability and high visual identification for cargo separation.",
+                images: [
+                    "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg",
+                    "https://i.ibb.co/d0DkR6XC/Upscale-generate-professional-vi-202607301138.jpg",
+                    "https://i.ibb.co/Lzvkr8Zd/Upscale-generate-professional-vi-202607301138-1.jpg",
+                    "https://i.ibb.co/F4TwPbkD/Generate-upscaled-product-image-2-K-202607301046.jpg",
+                    "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg"
+                ],
                 specs: {
                     "Diameter Range": "2.5 mm to 16 mm",
                     "Breaking Strength": "110 kg to 5,200 kg",
@@ -4063,9 +4125,14 @@
                 title: "Marine Polypropylene Rope",
                 category: "Polypropylene",
                 catId: "pp",
-                image: "https://images.unsplash.com/photo-1505244208262-19130104f175?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg",
                 desc: "Floating marine-grade mooring ropes resistant to rotting and saltwater corrosion.",
                 longDesc: "Our Marine Polypropylene Mooring Ropes are specialized lines for shipping docks and harbor towing. They feature a specific gravity below 1.0, ensuring they float on water and avoid propeller entanglement. They are chemically inert to saltwater corrosion, oil spills, and mold.",
+                images: [
+                    "https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg",
+                    "https://i.ibb.co/RWTXWZ0/marine-ropes.webp",
+                    "https://i.ibb.co/KcpRBtDf/image-png-202607310238.jpg"
+                ],
                 specs: {
                     "Diameter Range": "8 mm to 48 mm",
                     "Breaking Strength": "980 kg to 45,000 kg",
@@ -4094,9 +4161,14 @@
                 title: "Cloth Drying Ropes",
                 category: "Cotton & Cords",
                 catId: "cotton",
-                image: "https://images.unsplash.com/photo-1545180856-17cf3665a5be?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/7NdtkL4k/Product-consistency-close-up-shot-2-K-202607301044.jpg",
                 desc: "Weatherproof thin hanging line rolls engineered to withstand direct sunlight exposure.",
                 longDesc: "Our Cloth Drying Ropes are thin utility lines extruded with high-performance UV inhibitors. They resist high heat and continuous load without stretching, sagging, or fading, making them highly popular in retail markets and B2B domestic distribution.",
+                images: [
+                    "https://i.ibb.co/7NdtkL4k/Product-consistency-close-up-shot-2-K-202607301044.jpg",
+                    "https://i.ibb.co/bMQvtRRx/Generate-professional-rope-visuals-202607301126.jpg",
+                    "https://i.ibb.co/Zsk1x03/Generate-upscaled-product-image-2-K-202607301045.jpg"
+                ],
                 specs: {
                     "Diameter Range": "3 mm to 6 mm",
                     "Breaking Strength": "150 kg to 450 kg",
@@ -4108,9 +4180,13 @@
                 title: "PP Cord",
                 category: "Cotton & Cords",
                 catId: "cotton",
-                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/mFcGfmWv/Professional-rope-product-shoot-202607301455.jpg",
                 desc: "Braided polypropylene cords providing high flexibility for shopping bag handles and packaging.",
                 longDesc: "The PP Cord is a finely braided polypropylene rope line designed for high flexibility and aesthetic packaging. Commonly used for paper shopping bag handles, printing binders, and light utility tying in food and consumer packaging industries.",
+                images: [
+                    "https://i.ibb.co/mFcGfmWv/Professional-rope-product-shoot-202607301455.jpg",
+                    "https://i.ibb.co/RpGms9zs/Professional-product-shoot-rope-202607301454.jpg"
+                ],
                 specs: {
                     "Diameter Range": "1.5 mm to 6 mm",
                     "Breaking Strength": "80 kg to 420 kg",
@@ -4120,12 +4196,15 @@
                 }
             },
             "monofilament-yarn": {
-                title: "Monofilament Yarn",
+                title: "Monoplament Yarn",
                 category: "Yarns & Nets",
                 catId: "safety",
-                image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/21MqqbT6/everything-appropriately-through-2-K-202607301043.jpg",
                 desc: "Extruded high-tensile polymer yarn spools serving as raw material for weaving mills.",
                 longDesc: "Our Monofilament Yarn is extruded from premium B2B virgin polymers. It serves as the primary raw material for net weaving mills, agricultural shade netting, filtration cloth manufacturers, and industrial brush producers.",
+                images: [
+                    "https://i.ibb.co/21MqqbT6/everything-appropriately-through-2-K-202607301043.jpg"
+                ],
                 specs: {
                     "Thickness Range": "0.15 mm to 0.40 mm",
                     "Tensile Strength": "3.5 to 4.5 g/denier",
@@ -4138,9 +4217,14 @@
                 title: "Cotton Ropes",
                 category: "Cotton & Cords",
                 catId: "cotton",
-                image: "https://images.unsplash.com/photo-1601987077677-5346c0c57d3f?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/DHdcRpWj/JKT1931.webp",
                 desc: "Soft natural cotton ropes offering flexibility and biodegradability.",
                 longDesc: "Our Cotton Ropes are twisted from natural biodegradable cotton fibers. Offering a soft texture that protects handled goods, these ropes provide excellent knot retention, static resistance, and eco-friendly properties.",
+                images: [
+                    "https://i.ibb.co/DHdcRpWj/JKT1931.webp",
+                    "https://i.ibb.co/9ktyWwSS/Professional-product-shoot-image-202607310230.jpg",
+                    "https://i.ibb.co/mxW6dZB/Product-shoot-image-consistency-202607310230.jpg"
+                ],
                 specs: {
                     "Diameter Range": "4 mm to 32 mm",
                     "Breaking Strength": "140 kg to 4,800 kg",
@@ -4150,12 +4234,17 @@
                 }
             },
             "safety-net": {
-                title: "Safety Nets",
+                title: "Safety Nets (Africa Export)",
                 category: "Yarns & Nets",
                 catId: "safety",
-                image: "https://i.ibb.co/ztGKT5D/images-1.jpg",
+                image: "https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg",
                 desc: "Heavy-gauge mesh safety netting panels engineered to absorb debris and personnel falls.",
                 longDesc: "Begampur Safety Nets are manufactured from high-tenacity polypropylene and HDPE. They feature double-knot mesh cells with a thick border rope, built to absorb high impact drops on active construction sites in accordance with industrial safety norms.",
+                images: [
+                    "https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg",
+                    "https://i.ibb.co/VYdsLRxb/Professional-product-image-visua-2-K-202607301045.jpg",
+                    "https://i.ibb.co/TBVfwdwj/Generate-professional-product-image-2-K-202607301045.jpg"
+                ],
                 specs: {
                     "Mesh Size": "25 mm to 100 mm",
                     "Border Rope Diameter": "12 mm to 16 mm",
@@ -4169,9 +4258,15 @@
                 title: "PP Rope (Export Grade)",
                 category: "Polypropylene",
                 catId: "pp",
-                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
                 desc: "Premium grade polypropylene rope manufactured with specialized anti-aging UV stabilizers.",
                 longDesc: "Our Export Grade Polypropylene Ropes are manufactured strictly in compliance with international B2B quality norms. Packaged securely to prevent sea-spray dampness and moisture, these ropes are heavily exported to Gulf countries for ship anchoring and cargo securing.",
+                images: [
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
+                    "https://i.ibb.co/Ng8wk7kb/Product-consistency-maintained-c-202607301442.jpg",
+                    "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg"
+                ],
                 specs: {
                     "Diameter Range": "6 mm to 44 mm",
                     "Breaking Strength": "650 kg to 36,000 kg",
@@ -4184,9 +4279,15 @@
                 title: "PE Rope (Africa Export)",
                 category: "HDPE Monofilament",
                 catId: "hdpe",
-                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
+                image: "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
                 desc: "Heavy-duty heat-resistant polyethylene ropes built to withstand dry, desert climates.",
                 longDesc: "Specifically extruded to resist intense dry-heat and desert environment temperatures, our African Export PE Ropes undergo heat-set curing. They maintain constant tension and structural integrity without cracking, serving agricultural and freight networks in Africa.",
+                images: [
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
+                    "https://i.ibb.co/Ng8wk7kb/Product-consistency-maintained-c-202607301442.jpg",
+                    "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg"
+                ],
                 specs: {
                     "Diameter Range": "4 mm to 36 mm",
                     "Breaking Strength": "320 kg to 24,000 kg",
@@ -4201,14 +4302,14 @@
             "agriculture-farming": {
                 title: "Agriculture & Farming",
                 tagline: "High-Tensile Crops & Greenhouse Support lines",
-                coverImage: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80",
+                coverImage: "https://i.ibb.co/fzCnbhB0/Greenhouse-with-ropes-India-202607311049.jpg",
                 description: "UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.",
                 products: ["hdpe-monofilament", "polyethylene-monofilament", "twin-rope", "monofilament-yarn"]
             },
             "marine-mooring": {
                 title: "Marine & Mooring",
                 tagline: "Buoyant, Rot-Proof Maritime Towing Lines",
-                coverImage: "https://i.ibb.co/39VGdfGZ/20250720-inshore-cast-netting.webp",
+                coverImage: "https://i.ibb.co/HfX14nhy/Container-ship-in-sea-202607311034.jpg",
                 description: "Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.",
                 products: ["marine-polypropylene", "monofilament-super", "pp-export"]
             },
@@ -4222,28 +4323,28 @@
             "cargo-transport": {
                 title: "Cargo Transport",
                 tagline: "Secure Truck Lashing & Container Cargo Securing",
-                coverImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+                coverImage: "https://i.ibb.co/0RdJ5Rrq/Truck-on-Indian-roads-dockyard-202607311040.jpg",
                 description: "High-friction truck lashing ropes and container securing lines built for trans-continental transit.",
                 products: ["pp-rope", "monofilament-super", "pe-export"]
             },
             "safety-applications": {
                 title: "Safety Applications",
                 tagline: "High-Tenacity Fall Protection Netting & Boundary Lines",
-                coverImage: "https://i.ibb.co/HLBz283L/Safety-Climbing-Rope-Application-1.webp",
+                coverImage: "https://i.ibb.co/XxnXGc7T/Indian-construction-site-with-cr-202607311054.jpg",
                 description: "High-impact debris protection netting systems and double-knot mesh panels for personnel safety.",
                 products: ["safety-net", "hdpe-monofilament"]
             },
             "construction": {
                 title: "Construction",
                 tagline: "Scaffolding Lashing & Heavy Material Hoisting Lines",
-                coverImage: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
+                coverImage: "https://i.ibb.co/R4Q3rqkg/Indian-construction-site-with-wo-202607311028.jpg",
                 description: "Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.",
                 products: ["pp-rope", "safety-net"]
             },
             "household-general": {
                 title: "Household & General Purpose",
                 tagline: "Weatherproof Hanging lines & Domestic Packaging Cords",
-                coverImage: "https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&w=1200&q=80",
+                coverImage: "https://i.ibb.co/Q39Yz03M/Box-tied-with-plastic-rope-202607311058.jpg",
                 description: "Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.",
                 products: ["cloth-drying", "cotton-rope", "plastic-rope", "multicolour-plastic"]
             },
@@ -4289,17 +4390,30 @@
         });
 
         const fullProductsGrid = document.getElementById('fullProductsGrid');
+        
+        // Fisher-Yates array shuffling helper
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         function buildCatalog() {
             fullProductsGrid.innerHTML = '';
-            Object.keys(productsData).forEach(key => {
+            // Shuffle keys on load so catalog items are in a randomized order
+            const keys = shuffleArray(Object.keys(productsData));
+            keys.forEach(key => {
                 const prod = productsData[key];
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.setAttribute('data-cat', prod.catId);
                 card.innerHTML = `
-                    <div class="product-visual-wrapper">
-                        <strong>${prod.title}</strong>
-                        <span class="product-visual-desc">${prod.desc}</span>
+                    <div class="product-visual-wrapper" data-images="${(prod.images || [prod.image]).join(',')}" data-active-index="0" style="background-image: url('${prod.image}'); background-size: cover; background-position: center; position: relative; transition: background-image 0.8s ease-in-out;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(7, 20, 39, 0.3), rgba(7, 20, 39, 0.65)); z-index: 1;"></div>
+                        <strong style="position: relative; z-index: 2; color: #FFFFFF; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">${prod.title}</strong>
                     </div>
                     <div class="product-card-info">
                         <h3 class="product-card-title">${prod.title}</h3>
@@ -4466,7 +4580,6 @@
             document.getElementById('solution-breadcrumb-name').innerText = sol.title;
             document.getElementById('solDetailTitle').innerText = sol.title;
             document.getElementById('solDetailTagline').innerText = sol.tagline;
-            document.getElementById('solDetailHeaderBg').style.backgroundImage = `url('${sol.coverImage}')`;
             document.getElementById('solDetailDesc').innerText = sol.description;
             
             const list = document.getElementById('solDetailProductsList');
@@ -4476,10 +4589,22 @@
                 if (prod) {
                     const card = document.createElement('div');
                     card.className = 'sol-prod-card';
+                    card.style.display = 'flex';
+                    card.style.gap = '1.25rem';
+                    card.style.backgroundColor = '#FFFFFF';
+                    card.style.border = '1px solid var(--color-border)';
+                    card.style.borderRadius = '4px';
+                    card.style.padding = '1.25rem';
+                    card.style.marginBottom = '1.25rem';
+                    card.style.alignItems = 'center';
+                    
                     card.innerHTML = `
-                        <h4 class="sol-prod-title">${prod.title}</h4>
-                        <p class="sol-prod-desc">${prod.desc}</p>
-                        <a href="#product-${pKey}" class="sol-prod-link">Technical Specs &rarr;</a>
+                        <div class="sol-prod-img-wrap" style="width: 100px; height: 100px; flex-shrink: 0; border-radius: 4px; background-image: url('${prod.image}'); background-size: cover; background-position: center; border: 1px solid var(--color-border);"></div>
+                        <div style="flex: 1;">
+                            <h4 class="sol-prod-title" style="font-size: 1.1rem; font-weight: 700; color: var(--color-primary); margin: 0 0 0.35rem 0;">${prod.title}</h4>
+                            <p class="sol-prod-desc" style="font-size: 0.82rem; color: var(--color-text); line-height: 1.4; margin: 0 0 0.75rem 0;">${prod.desc}</p>
+                            <a href="#product-${pKey}" class="sol-prod-link" style="font-size: 0.85rem; font-weight: 700; color: var(--color-accent); text-decoration: none;">Technical Specs &rarr;</a>
+                        </div>
                     `;
                     list.appendChild(card);
                 }
@@ -4493,7 +4618,54 @@
             document.getElementById('prodDetailDesc').innerText = prod.desc;
             document.getElementById('prodDetailLongDesc').innerText = prod.longDesc;
             document.getElementById('prodDetailBadge').innerText = prod.category;
-            document.getElementById('prodDetailImage').style.backgroundImage = `url('${prod.image}')`;
+            // Set image
+            const images = prod.images || [prod.image];
+            document.getElementById('prodDetailImage').style.backgroundImage = `url('${images[0]}')`;
+            
+            // Set thumbnails
+            const thumbsContainer = document.getElementById('prodDetailThumbnails');
+            thumbsContainer.innerHTML = '';
+            if (images.length > 1) {
+                images.forEach((imgUrl, i) => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    img.alt = `${prod.title} View ${i + 1}`;
+                    img.style.width = '70px';
+                    img.style.height = '70px';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '4px';
+                    img.style.cursor = 'pointer';
+                    img.style.border = i === 0 ? '2px solid var(--color-accent)' : '2px solid transparent';
+                    img.style.opacity = i === 0 ? '1' : '0.6';
+                    img.style.transition = 'all 0.2s ease';
+                    
+                    img.addEventListener('click', () => {
+                        document.getElementById('prodDetailImage').style.backgroundImage = `url('${imgUrl}')`;
+                        Array.from(thumbsContainer.children).forEach(child => {
+                            child.style.borderColor = 'transparent';
+                            child.style.opacity = '0.6';
+                        });
+                        img.style.borderColor = 'var(--color-accent)';
+                        img.style.opacity = '1';
+                    });
+                    
+                    img.addEventListener('mouseenter', () => {
+                        if (img.style.borderColor !== 'var(--color-accent)') {
+                            img.style.opacity = '0.9';
+                        }
+                    });
+                    img.addEventListener('mouseleave', () => {
+                        if (img.style.borderColor !== 'var(--color-accent)') {
+                            img.style.opacity = '0.6';
+                        }
+                    });
+                    
+                    thumbsContainer.appendChild(img);
+                });
+                thumbsContainer.style.display = 'flex';
+            } else {
+                thumbsContainer.style.display = 'none';
+            }
             
             document.getElementById('prodDetailEnquireBtn').setAttribute('data-product', prod.title);
 
@@ -5429,7 +5601,7 @@
                     const subject = `Connection Request from ${data.company} - ${data.name}`;
                     const body = `Hello Begampur Rope Center,\n\nI would like to connect:\n\nName: ${data.name}\nCompany: ${data.company}\nMessage: ${data.msg}`;
                     
-                    const url = `mailto:begampurropecenter@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=begampurropecenter@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.open(url, '_blank');
 
                     modalTxt.innerHTML = `Thank you, <strong>${data.name}</strong> from <strong>${data.company}</strong>.<br><br>
@@ -5580,7 +5752,7 @@
                     const subject = `Inquiry from ${data.company} - ${data.name}`;
                     const body = `Hello Begampur Rope Center,\n\nI would like to submit an inquiry:\n\nName: ${data.name}\nCompany: ${data.company}\nCountry: ${data.country}\nPhone: ${data.phone}\nEmail: ${data.email}\nProduct: ${data.product}\nQuantity: ${data.qty}\nMessage: ${data.msg}`;
                     
-                    const url = `mailto:begampurropecenter@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=begampurropecenter@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.open(url, '_blank');
 
                     document.getElementById('inquiryDrawer').classList.remove('active');
@@ -5620,6 +5792,26 @@
         initMultiChannelForm();
         initSustainabilityCards();
         initConnectForm();
+
+        // Auto-shuffling loop for cards with multiple images
+        function startImageShuffling() {
+            setInterval(() => {
+                const shufflers = document.querySelectorAll('[data-images]');
+                shufflers.forEach(el => {
+                    const attr = el.getAttribute('data-images');
+                    if (!attr) return;
+                    const imgUrls = attr.split(',');
+                    if (imgUrls.length <= 1) return;
+                    let activeIdx = parseInt(el.getAttribute('data-active-index') || '0');
+                    activeIdx = (activeIdx + 1) % imgUrls.length;
+                    el.setAttribute('data-active-index', activeIdx);
+                    
+                    // Smooth swap
+                    el.style.backgroundImage = `url('${imgUrls[activeIdx]}')`;
+                });
+            }, 3000);
+        }
+        startImageShuffling();
     </script>
 </body>
 </html>
