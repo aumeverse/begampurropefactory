@@ -2985,6 +2985,13 @@
         }, 2000);
     </script>
 
+    <div id="main-site-wrapper">
+
+
+    
+
+
+    
     <!-- NAVIGATION HEADER -->
     <header>
         <div class="container nav-container">
@@ -4108,7 +4115,7 @@
                         <li><a href="#about">About Factory</a></li>
                         <li><a href="#products">Product Catalogue</a></li>
                         <li><a href="#vision">Vision Roadmap</a></li>
-                        <li><a href="admin.html">Admin pannel</a></li>
+                        <li><a href="index_begampur.html?admin=true" onclick="navigateToAdmin(event)" onclick="navigateToAdmin(event)">Admin pannel</a></li>
                     </ul>
                 </div>
 
@@ -6404,5 +6411,1673 @@
         }
         startImageShuffling();
     </script>
+
+    </div><!-- end main-site-wrapper -->
+
+    <!-- ADMIN PANEL SCREEN WRAPPER -->
+    <div id="admin-panel-wrapper" style="display: none;">
+        <style>
+        
+        #admin-panel-wrapper {
+            background-color: #FAF9F6;
+            color: #1C1C1C;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        #admin-panel-wrapper * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #admin-panel-wrapper .adm-login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #071427;
+            padding: 20px;
+        }
+
+        #admin-panel-wrapper .adm-login-card {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        #admin-panel-wrapper .adm-login-logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border-radius: 50%;
+            background-color: #0A1E3D;
+            padding: 5px;
+        }
+
+        #admin-panel-wrapper .adm-login-title {
+            color: #0A1E3D;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        #admin-panel-wrapper .adm-login-subtitle {
+            color: #6B7280;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #admin-panel-wrapper .adm-form-group {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        #admin-panel-wrapper .adm-form-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0A1E3D;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        #admin-panel-wrapper .adm-form-control {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            background-color: #FFFFFF;
+            color: #1C1C1C;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #admin-panel-wrapper .adm-form-control:focus {
+            outline: none;
+            border-color: #1A5FA8;
+            box-shadow: 0 0 0 3px rgba(26, 95, 168, 0.15);
+        }
+
+        #admin-panel-wrapper .adm-btn {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none;
+        }
+
+        #admin-panel-wrapper .adm-btn-primary {
+            background-color: #A83232;
+            color: #FFFFFF;
+            box-shadow: 0 4px 0 #732222;
+        }
+
+        #admin-panel-wrapper .adm-btn-primary:hover {
+            background-color: #8F2626;
+        }
+
+        #admin-panel-wrapper .adm-btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #732222;
+        }
+
+        #admin-panel-wrapper .adm-btn-secondary {
+            background-color: transparent;
+            border-color: #E5E7EB;
+            color: #6B7280;
+        }
+
+        #admin-panel-wrapper .adm-btn-secondary:hover {
+            border-color: #6B7280;
+            color: #0A1E3D;
+        }
+
+        #admin-panel-wrapper .adm-btn-danger {
+            background-color: #EF4444;
+            color: #FFFFFF;
+            box-shadow: 0 4px 0 #B91C1C;
+        }
+
+        #admin-panel-wrapper .adm-btn-danger:hover {
+            background-color: #DC2626;
+        }
+
+        #admin-panel-wrapper .adm-btn-danger:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #B91C1C;
+        }
+
+        #admin-panel-wrapper .adm-login-error {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #EF4444;
+            font-size: 0.85rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: none;
+            text-align: center;
+        }
+
+        #admin-panel-wrapper header {
+            background-color: #0A1E3D;
+            color: #FFFFFF;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #admin-panel-wrapper .adm-header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #admin-panel-wrapper .adm-header-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            padding: 3px;
+        }
+
+        #admin-panel-wrapper .adm-header-title-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #admin-panel-wrapper .adm-header-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        #admin-panel-wrapper .adm-header-subtitle {
+            font-size: 0.75rem;
+            color: #1A5FA8;
+            font-weight: 500;
+        }
+
+        #admin-panel-wrapper .adm-unsaved-badge {
+            background-color: #F59E0B;
+            color: #FFFFFF;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+            display: inline-block;
+            animation: adm-pulse 1.5s infinite;
+        }
+
+        @keyframes adm-pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        #admin-panel-wrapper .adm-main-container {
+            max-width: 1400px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        #admin-panel-wrapper .adm-admin-section {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 15px rgba(7, 20, 39, 0.03);
+        }
+
+        #admin-panel-wrapper .adm-section-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #admin-panel-wrapper .adm-section-title {
+            color: #0A1E3D;
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #admin-panel-wrapper .adm-section-desc {
+            color: #6B7280;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+
+        #admin-panel-wrapper .adm-video-slots-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        #admin-panel-wrapper .adm-video-slot-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background-color: #FAF9F6;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #admin-panel-wrapper .adm-video-slot-card:hover {
+            border-color: #1A5FA8;
+        }
+
+        #admin-panel-wrapper .adm-video-preview {
+            width: 120px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #000;
+            border: 1px solid #E5E7EB;
+            flex-shrink: 0;
+        }
+
+        #admin-panel-wrapper .adm-video-slot-fields {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #admin-panel-wrapper .adm-slot-index-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #0A1E3D;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        #admin-panel-wrapper .adm-solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        #admin-panel-wrapper .adm-solution-card-item {
+            border: 1px solid #E5E7EB;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        #admin-panel-wrapper .adm-solution-card-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-color: #1A5FA8;
+        }
+
+        #admin-panel-wrapper .adm-solution-thumbnail {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid #E5E7EB;
+            background-color: #0A1E3D;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        #admin-panel-wrapper .adm-solution-thumbnail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(7, 20, 39, 0.1) 0%, rgba(7, 20, 39, 0.8) 100%);
+        }
+
+        #admin-panel-wrapper .adm-solution-title-badge {
+            position: relative;
+            z-index: 1;
+            padding: 1rem;
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #admin-panel-wrapper .adm-solution-card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #admin-panel-wrapper .adm-product-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background-color: #FFFFFF;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-card.expanded {
+            border-color: #1A5FA8;
+            box-shadow: 0 4px 15px rgba(26, 95, 168, 0.08);
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-header {
+            padding: 1rem 1.5rem;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-header:hover {
+            background-color: #F3F4F6;
+        }
+
+        #admin-panel-wrapper .adm-product-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #admin-panel-wrapper .adm-product-header-thumb {
+            width: 50px;
+            height: 34px;
+            object-fit: cover;
+            border-radius: 3px;
+            border: 1px solid #E5E7EB;
+            background-color: #0A1E3D;
+        }
+
+        #admin-panel-wrapper .adm-product-header-title-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #admin-panel-wrapper .adm-product-header-title {
+            font-weight: 700;
+            color: #0A1E3D;
+            font-size: 0.95rem;
+        }
+
+        #admin-panel-wrapper .adm-product-header-category {
+            font-size: 0.75rem;
+            color: #6B7280;
+            font-weight: 500;
+        }
+
+        #admin-panel-wrapper .adm-product-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #admin-panel-wrapper .adm-accordion-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.3s;
+            color: #6B7280;
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-card.expanded .adm-accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-body {
+            padding: 2rem 2.5rem;
+            border-top: 1px solid #E5E7EB;
+            display: none;
+            background-color: #FFFFFF;
+        }
+
+        #admin-panel-wrapper .adm-product-accordion-card.expanded .adm-product-accordion-body {
+            display: block;
+        }
+
+        #admin-panel-wrapper .adm-product-grid-fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #admin-panel-wrapper .adm-product-full-width-field {
+            grid-column: span 2;
+        }
+
+        #admin-panel-wrapper .adm-product-spec-row, 
+        #admin-panel-wrapper .adm-product-gallery-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+        }
+
+        #admin-panel-wrapper .adm-product-meta-subcontainer {
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            padding: 1.5rem;
+            background-color: #FAF9F6;
+            margin-bottom: 1.5rem;
+        }
+
+        #admin-panel-wrapper .adm-export-footer-card {
+            background-color: #071427;
+            color: #FFFFFF;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        #admin-panel-wrapper .adm-export-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        #admin-panel-wrapper .adm-export-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        #admin-panel-wrapper .adm-export-btn-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        #admin-panel-wrapper .adm-export-instructions {
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #admin-panel-wrapper .adm-instructions-heading {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #1A5FA8;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #admin-panel-wrapper .adm-instructions-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            #admin-panel-wrapper .adm-product-grid-fields {
+                grid-template-columns: 1fr;
+            }
+            #admin-panel-wrapper .adm-product-full-width-field {
+                grid-column: span 1;
+            }
+            #admin-panel-wrapper header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            #admin-panel-wrapper .adm-video-slot-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #admin-panel-wrapper .adm-video-slot-fields {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        </style>
+        
+    <!-- AUTH GATE SCREEN -->
+    <div id="login-screen" class="adm-login-screen">
+        <div class="adm-login-card">
+            <img src="https://i.ibb.co/Z6rbGKtV/file-00000000a3cc7209b622bc80a50fd1fc.png" alt="BRC Logo" class="adm-login-logo">
+            <h2 class="adm-login-title">Begampur Rope Center</h2>
+            <p class="adm-login-subtitle">B2B Portal Admin Panel</p>
+            <div id="loginError" class="adm-login-error">Invalid Username or Password. Please try again.</div>
+            
+            <div class="adm-form-group">
+                <label class="adm-form-label" for="username">Username</label>
+                <input type="text" id="username" class="adm-form-control" placeholder="Enter Username" required>
+            </div>
+            
+            <div class="adm-form-group" style="margin-bottom: 2rem;">
+                <label class="adm-form-label" for="password">Password</label>
+                <input type="password" id="password" class="adm-form-control" placeholder="Enter Password" required>
+            </div>
+            
+            <button onclick="handleLogin()" class="adm-btn adm-btn-primary" style="width: 100%;">Authenticate &rarr;</button>
+        </div>
+    </div>
+
+    <!-- MAIN ADMIN PANEL SCREEN -->
+    <div id="admin-screen" style="display: none;">
+        <header>
+            <div class="adm-header-brand">
+                <img src="https://i.ibb.co/Z6rbGKtV/file-00000000a3cc7209b622bc80a50fd1fc.png" alt="BRC Logo" class="adm-header-logo">
+                <div class="adm-header-title-block">
+                    <span class="adm-header-title">BEGAMPUR ROPE CENTER <span id="unsavedBadge" class="adm-unsaved-badge" style="display:none;">Unsaved Changes</span></span>
+                    <span class="adm-header-subtitle">Management Console</span>
+                </div>
+            </div>
+            <div>
+                <button onclick="navigateToWebsite(event)" class="adm-btn adm-btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.3); color: #FFFFFF; margin-right: 0.5rem; background-color: transparent;">View Site</button>
+                <button onclick="handleLogout()" class="adm-btn adm-btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.75rem; border-color: rgba(255,255,255,0.3); color: #FFFFFF; background-color: transparent;">Logout</button>
+            </div>
+        </header>
+
+        <div class="adm-main-container">
+
+            <!-- SECTION 1: HERO VIDEOS -->
+            <div class="adm-admin-section">
+                <div class="adm-section-header">
+                    <div>
+                        <h2 class="adm-section-title">Section 1 — Homepage Hero Videos</h2>
+                        <p class="adm-section-desc">Manage the video loop sequence played inside the background hero container. Supports up to 6 slots.</p>
+                    </div>
+                    <button class="adm-btn adm-btn-primary" onclick="addVideoSlot()" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Add Video Slot</button>
+                </div>
+                <div id="videoSlotsContainer" class="adm-video-slots-container">
+                    <!-- Video slots loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- SECTION 2: SOLUTIONS -->
+            <div class="adm-admin-section">
+                <div class="adm-section-header">
+                    <div>
+                        <h2 class="adm-section-title">Section 2 — Solutions Images</h2>
+                        <p class="adm-section-desc">Modify cover image links for solution category tiles in the solutions slider directory (24px layout).</p>
+                    </div>
+                </div>
+                <div id="solutionsGrid" class="adm-solutions-grid">
+                    <!-- Solutions loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- SECTION 3: PRODUCTS -->
+            <div class="adm-admin-section">
+                <div class="adm-section-header">
+                    <div>
+                        <h2 class="adm-section-title">Section 3 — Product Management (Full CRUD)</h2>
+                        <p class="adm-section-desc">Add, edit, or delete rope and net inventory card items loaded in the main product catalog.</p>
+                    </div>
+                    <button class="adm-btn adm-btn-primary" onclick="addNewProduct()" style="padding: 0.5rem 1rem; font-size: 0.75rem;">+ Add New Product</button>
+                </div>
+                <div id="productListContainer" class="adm-product-list-container">
+                    <!-- Products loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- EXPORT CODE FOOTER -->
+            <div class="adm-export-footer-card">
+                <h3 class="adm-export-title">Section 4 — Saving & Exporting Changes</h3>
+                <p class="adm-export-subtitle">Changes are maintained in-memory. Save your modifications by exporting the updated JavaScript configuration below.</p>
+                
+                <div class="adm-export-btn-container">
+                    <button class="adm-btn adm-btn-primary" onclick="exportData()" style="padding: 0.9rem 2.25rem; font-size: 0.9rem; font-weight: 700; background-color: #10B981; box-shadow: 0 4px 0 #047857;">Export Updated Data &darr;</button>
+                    <button class="adm-btn adm-btn-secondary" onclick="copyToClipboard()" style="padding: 0.9rem 1.5rem; font-size: 0.9rem; border-color: rgba(255,255,255,0.3); color: #FFFFFF; font-weight: 700; background-color: transparent;">Copy to Clipboard</button>
+                </div>
+
+                <div class="adm-export-instructions">
+                    <div class="adm-instructions-heading">
+                        <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                        INSTRUCTIONS
+                    </div>
+                    <p class="adm-instructions-text">
+                        1. Click <strong>"Export Updated Data"</strong> to download a file named <code>updated-site-data.js</code> (or use <strong>"Copy to Clipboard"</strong>).<br>
+                        2. Open your website code directory and locate <code>index_begampur.html</code>.<br>
+                        3. Find the JavaScript blocks where <code>productsData</code> and <code>solutionsData</code> are declared, and replace them with the exported contents.<br>
+                        4. Locate the 4 video slide tags in the hero section and update their <code>src</code> attributes with the new hero video URL list.<br>
+                        5. Commit the modifications and push them to your live GitHub Pages hosting repository.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <script>
+        
+        // --- HARDCODED DATA INJECTED FROM CODEBASE STATE ---
+        let adminHeroVideos = [
+            "https://ik.imagekit.io/yx7ocxexyt/Rope_twisting_and_moving_left_202608251044_gwr_video_mvp.mp4",
+            "https://ik.imagekit.io/yx7ocxexyt/watermark-removed-Drone_flying_over_fish_farms_202608251041.mp4",
+            "https://ik.imagekit.io/yx7ocxexyt/Fisherman_throwing_net_into_water_202608251046_gwr_video_mvp.mp4",
+            "https://ik.imagekit.io/yx7ocxexyt/0821(2).mp4"
+        ];
+
+        let adminSolutionsData = {
+            "agriculture-farming": {
+                title: "Agriculture & Farming",
+                tagline: "High-Tensile Crops & Greenhouse Support lines",
+                coverImage: "https://i.ibb.co/fzCnbhB0/Greenhouse-with-ropes-India-202607311049.jpg",
+                description: "UV-stabilized crop supports and greenhouse trellis yarns built for extreme weather resistance.",
+                products: ["hdpe-monofilament", "polyethylene-monofilament", "twin-rope", "monofilament-yarn"]
+            },
+            "marine-mooring": {
+                title: "Marine & Mooring",
+                tagline: "Buoyant, Rot-Proof Maritime Towing Lines",
+                coverImage: "https://i.ibb.co/HfX14nhy/Container-ship-in-sea-202607311034.jpg",
+                description: "Buoyant polypropylene mooring lines and harbor towing ropes certified against saltwater corrosion.",
+                products: ["marine-polypropylene", "monofilament-super", "pp-export"]
+            },
+            "industrial-usage": {
+                title: "Industrial Usage",
+                tagline: "Heavy-Duty Packaging & Material Handling Cordage",
+                coverImage: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
+                description: "Heavy-gauge packaging twines and commercial binding lines for high-speed warehousing.",
+                products: ["pp-rope", "pp-cord", "twin-rope"]
+            },
+            "cargo-transport": {
+                title: "Cargo Transport",
+                tagline: "Secure Truck Lashing & Container Cargo Securing",
+                coverImage: "img/cargo_transport_1.png",
+                description: "High-friction truck lashing ropes and container securing lines built for trans-continental transit.",
+                products: ["pp-rope", "monofilament-super", "pe-export"]
+            },
+            "safety-applications": {
+                title: "Safety Applications",
+                tagline: "High-Tenacity Fall Protection Netting & Boundary Lines",
+                coverImage: "img/construction_2.png",
+                description: "High-impact debris protection netting systems and double-knot mesh panels for personnel safety.",
+                products: ["safety-net", "hdpe-monofilament"]
+            },
+            "construction": {
+                title: "Construction",
+                tagline: "Scaffolding Lashing & Heavy Material Hoisting Lines",
+                coverImage: "img/construction_1.png",
+                description: "Chemical-resistant scaffold tying lines and high-load hoist pulleys built for construction yards.",
+                products: ["pp-rope", "safety-net"]
+            },
+            "household-general": {
+                title: "Household & General Purpose",
+                tagline: "Weatherproof Hanging lines & Domestic Packaging Cords",
+                coverImage: "https://i.ibb.co/Q39Yz03M/Box-tied-with-plastic-rope-202607311058.jpg",
+                description: "Pliable cloth drying lines and colorful packing ropes styled for domestic retail supply.",
+                products: ["cloth-drying", "cotton-rope", "plastic-rope", "multicolour-plastic"]
+            },
+            "custom-marine-fishing": {
+                title: "Marine & Fishing",
+                tagline: "High-Abrasion Net Borders & Trawler Rigging",
+                coverImage: "https://images.unsplash.com/photo-1516715094727-ec48be335d79?auto=format&fit=crop&w=1200&q=80",
+                description: "Abrasion-shielded trawler net border ropes engineered for commercial marine fishing fleets.",
+                products: ["hdpe-mono", "monofilament-yarn", "polyethylene-monofilament"]
+            }
+        };
+
+        let adminProductsData = {
+            "hdpe-monofilament": {
+                title: "HDPE Monofilament Ropes",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png",
+                desc: "UV stabilized, zero water absorption polymer monofilament rope engineered for outdoor weathering.",
+                longDesc: "Our High-Density Polyethylene (HDPE) Monofilament Ropes are manufactured using premium-grade virgin resins combined with highly effective UV-inhibitor compounds. Designed for maximum longevity, these ropes absorb zero water, making them resistant to rotting, mold, and chemical acids. They are highly favored by B2B buyers in agricultural crop trellising and marine boundary setups.",
+                images: [
+                    "https://i.ibb.co/tgKYMGr/Gemini-Generated-Image-8763oz8763oz8763.png",
+                    "https://i.ibb.co/DdqB5q2/Generate-professional-product-image-202607310934.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "2 mm to 24 mm",
+                    "Breaking Strength": "120 kg to 12,500 kg",
+                    "Specific Gravity": "0.95 (Floats on water)",
+                    "UV Resistance": "High (Grade-A Stabilizer)",
+                    "Acid & Alkali Resistance": "Excellent",
+                    "Standard Packaging": "Coils of 110 m / 220 m or customized spools",
+                    "Available Colors": "Orange, Blue, Green, Yellow"
+                }
+            },
+            "monofilament-super": {
+                title: "Monofilament Super Rope",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                desc: "Superior strength co-polymer monofilament layout rope lines made for high-tension maritime moorings.",
+                longDesc: "The Monofilament Super Rope represents our top-tier heavy-duty polymer line. Extruded with a modified high-tensile HDPE formulation, it features a tighter lay structure that significantly enhances knot security and wear-resistance. It is heavily utilized in commercial deep-sea trawler rigging, maritime harbor mooring, and heavy industrial cargo securement.",
+                images: [
+                    "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "8 mm to 48 mm",
+                    "Breaking Strength": "950 kg to 42,000 kg",
+                    "Elongation at Break": "15% (Low Stretch)",
+                    "Standard Packaging": "Standard marine coils of 220 meters",
+                    "Available Colors": "Dark Blue, Sea Green"
+                }
+            },
+            "polyethylene-monofilament": {
+                title: "Polyethylene Monofilament Rope",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://i.ibb.co/qYRjVbbC/Upscaled-product-image-consistency-2-K-202607301045.jpg",
+                desc: "Highly flexible polyethylene monofilament rope coils designed for global horticulture support.",
+                longDesc: "Our Polyethylene Monofilament Ropes offer exceptional flexibility combined with structural weather resistance. They are manufactured under controlled heat settings to prevent shrinkage and cracking in dry regions. Best suited for greenhouse setups, agricultural climbing vine netting, and generic packaging lines.",
+                images: [
+                    "https://i.ibb.co/qYRjVbbC/Upscaled-product-image-consistency-2-K-202607301045.jpg",
+                    "https://i.ibb.co/vCdVQYns/upscale-the-image-202607310245.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "3 mm to 32 mm",
+                    "Breaking Strength": "180 kg to 18,500 kg",
+                    "Specific Gravity": "0.95 (Floats)",
+                    "UV Resistance": "High (UV Inhibited)",
+                    "Standard Packaging": "Coils of 100m / 200m or custom spools",
+                    "Available Colors": "Red, Green, White, Assorted"
+                }
+            },
+            "hdpe-mono": {
+                title: "HDPE Mono Rope",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://i.ibb.co/9mp9KLF5/Gemini-Generated-Image-kdd8a9kdd8a9kdd8.png",
+                desc: "Sleek single filament HDPE utility rope bundle with high knot retention.",
+                longDesc: "The HDPE Mono Rope is a lightweight single-filament laying line optimized for high-flexibility applications. Its smooth exterior texture permits quick knotting and unknotting without causing structural fraying. Commonly deployed for border nets, vegetable crop supports, and light packaging cargo.",
+                images: [
+                    "https://i.ibb.co/9mp9KLF5/Gemini-Generated-Image-kdd8a9kdd8a9kdd8.png",
+                    "https://i.ibb.co/Q7n7VLDr/Generate-professional-product-image-2-K-202607301043-1.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "1.5 mm to 12 mm",
+                    "Breaking Strength": "90 kg to 3,200 kg",
+                    "Specific Gravity": "0.95 (Floats)",
+                    "UV Resistance": "Medium-High",
+                    "Standard Packaging": "Spools of 500 meters or custom coils",
+                    "Available Colors": "Multi-shade green, yellow, orange"
+                }
+            },
+            "pp-rope": {
+                title: "PP Rope (Polypropylene)",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                desc: "Extremely lightweight polypropylene ropes with high breaking strength and friction resistance.",
+                longDesc: "Our Polypropylene (PP) Ropes are the workhorse of B2B logistics. Engineered to deliver exceptional tensile strength while maintaining a lightweight structure, these ropes resist chemicals, solvents, acids, and wear. They are heavily utilized in construction scaffolding lashing, heavy truck tying, and general cargo lifting.",
+                images: [
+                    "https://i.ibb.co/ZR3HkrvY/Product-consistency-maintained-a-2-K-202607301044.jpg",
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
+                    "https://i.ibb.co/Ng8wk7kb/Product-consistency-maintained-c-202607301442.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "2 mm to 40 mm",
+                    "Breaking Strength": "150 kg to 32,500 kg",
+                    "Specific Gravity": "0.91 (Highly Buoyant)",
+                    "Chemical Resistance": "Excellent",
+                    "Standard Packaging": "Coils of 110 m / 220 m",
+                    "Available Colors": "Blue, Yellow, Silver-Grey"
+                }
+            },
+            "plastic-rope": {
+                title: "Plastic Ropes",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg",
+                desc: "General-purpose synthetic plastic ropes outsourced for B2B wholesale retail stock.",
+                longDesc: "Our standard Plastic Ropes are extruded using premium recycled and virgin synthetic resins. They provide a cost-effective, high-reliability bundling solution for domestic wholesale markets, retail distribution lines, and basic warehouse lashing requirements.",
+                images: [
+                    "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg",
+                    "https://i.ibb.co/F4TwPbkD/Generate-upscaled-product-image-2-K-202607301046.jpg",
+                    "https://i.ibb.co/Lzvkr8Zd/Upscale-generate-professional-vi-202607301138-1.jpg",
+                    "https://i.ibb.co/d0DkR6XC/Upscale-generate-professional-vi-202607301138.jpg",
+                    "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "1.5 mm to 20 mm",
+                    "Breaking Strength": "80 kg to 7,500 kg",
+                    "Specific Gravity": "0.92 (Floats)",
+                    "Standard Packaging": "Hanks of 10m/20m or coils of 100m",
+                    "Available Colors": "White, Red, Blue"
+                }
+            },
+            "multicolour-plastic": {
+                title: "Multi Colour Plastic Ropes",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg",
+                desc: "Vibrant multi-shade plastic ropes extruded for consumer packaging.",
+                longDesc: "These Multicolored Plastic Ropes combine B2B utility with vibrant aesthetic options. Specially formulated for retail logistics and domestic transport tying, they provide excellent knotting capability and high visual identification for cargo separation.",
+                images: [
+                    "https://i.ibb.co/PvrwQ7c8/Upscale-generate-professional-vi-202607301139.jpg",
+                    "https://i.ibb.co/d0DkR6XC/Upscale-generate-professional-vi-202607301138.jpg",
+                    "https://i.ibb.co/Lzvkr8Zd/Upscale-generate-professional-vi-202607301138-1.jpg",
+                    "https://i.ibb.co/F4TwPbkD/Generate-upscaled-product-image-2-K-202607301046.jpg",
+                    "https://i.ibb.co/F4Y5BJ7w/Upscale-plastic-multicolour-ropes-2-K-202607301044.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "2.5 mm to 16 mm",
+                    "Breaking Strength": "110 kg to 5,200 kg",
+                    "Specific Gravity": "0.92",
+                    "Standard Packaging": "Coils of 100 meters, packaged in bundles",
+                    "Available Colors": "Rainbow striped, dual-shade assortments"
+                }
+            },
+            "marine-polypropylene": {
+                title: "Marine Polypropylene Rope",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg",
+                desc: "High-buoyancy marine grade mooring ropes certified for saltwater operations.",
+                longDesc: "Our Marine Polypropylene Ropes feature customized dual-direction laying for twist resistance under high load. With certified breaking strengths, they float on water, resist acid corrosion, and are heavily supplied to global harbor operations.",
+                images: [
+                    "https://i.ibb.co/dsqmQdqL/Generate-upscaled-product-image-2-K-202607301044.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "10 mm to 48 mm",
+                    "Breaking Strength": "1,400 kg to 42,000 kg",
+                    "Standard Packaging": "Coils of 220 meters",
+                    "UV Resistance": "Excellent"
+                }
+            },
+            "twin-rope": {
+                title: "Twine Rope",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/N2NDx0V7/Plastic-ropes-used-in-home-202607311058-1.jpg",
+                desc: "Twinned double-filament twine providing B2B packing knot retention.",
+                longDesc: "The Twine Rope is a double-twisted cordage designed for heavy-duty box securing and agricultural bundling. Its unique design creates high friction between fibers, securing knots.",
+                images: [
+                    "https://i.ibb.co/N2NDx0V7/Plastic-ropes-used-in-home-202607311058-1.jpg"
+                ],
+                specs: {
+                    "Thickness": "1.5 mm to 3 mm",
+                    "Standard Packaging": "Cones of 1 kg to 2.5 kg"
+                }
+            },
+            "cloth-drying-rope": {
+                title: "Cloth Drying Ropes",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/LXk71xxB/Plastic-ropes-used-in-home-202607311058.jpg",
+                desc: "Pliable, UV-coated drying lines manufactured for long-term outdoor exposure.",
+                longDesc: "Manufactured from high-grade virgin polymers, our Cloth Drying Ropes feature an added anti-UV coat to prevent color fading and cracking under constant sunlight. A retail shelf favorite.",
+                images: [
+                    "https://i.ibb.co/LXk71xxB/Plastic-ropes-used-in-home-202607311058.jpg"
+                ],
+                specs: {
+                    "Diameter": "4 mm to 8 mm",
+                    "UV Coating": "Dual Shield",
+                    "Standard Lengths": "Hanks of 10m / 20m"
+                }
+            },
+            "pp-cord": {
+                title: "PP Cord",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/Q39Yz03M/Box-tied-with-plastic-rope-202607311058.jpg",
+                desc: "Thicker multi-filament polymer cords optimized for heavy-load industrial strapping.",
+                longDesc: "Extruded for extreme friction-resistance, our PP Cords are the preferred choice for binding heavy cartons, securing shipping pallets, and heavy industrial sewing operations.",
+                images: [
+                    "https://i.ibb.co/Q39Yz03M/Box-tied-with-plastic-rope-202607311058.jpg"
+                ],
+                specs: {
+                    "Diameter": "3 mm to 6 mm",
+                    "Packaging": "Spools of 5 kg to 10 kg"
+                }
+            },
+            "monofilament-yarn": {
+                title: "Monofilament Yarn",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://i.ibb.co/N2ymqX1q/1f15e15de5fbd0685eb39aaaa35652d7.jpg",
+                desc: "High-grade monofilament polymer yarn spools extruded for fabric weaving and mesh setups.",
+                longDesc: "Our high-tenacity monofilament yarn spools deliver consistent thickness and linear strength. Extruded with premium color pigments, they are optimized for weaving agro-shading nets, safety mesh, and B2B filter fabrics.",
+                images: [
+                    "https://i.ibb.co/N2ymqX1q/1f15e15de5fbd0685eb39aaaa35652d7.jpg"
+                ],
+                specs: {
+                    "Thickness Range": "0.15 mm to 0.40 mm",
+                    "Standard Packaging": "Cones of 5 kg to 10 kg"
+                }
+            },
+            "cotton-rope": {
+                title: "Cotton Ropes",
+                category: "Cotton & Cords",
+                catId: "cotton",
+                image: "https://i.ibb.co/DHdcRpWj/JKT1931.webp",
+                desc: "Soft natural cotton ropes offering flexibility and biodegradability.",
+                longDesc: "Our Cotton Ropes are twisted from natural biodegradable cotton fibers. Offering a soft texture that protects handled goods, these ropes provide excellent knot retention, static resistance, and eco-friendly properties.",
+                images: [
+                    "https://i.ibb.co/DHdcRpWj/JKT1931.webp",
+                    "https://i.ibb.co/9ktyWwSS/Professional-product-shoot-image-202607310230.jpg",
+                    "https://i.ibb.co/mxW6dZB/Product-shoot-image-consistency-202607310230.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "4 mm to 32 mm",
+                    "Breaking Strength": "140 kg to 4,800 kg",
+                    "Water Absorption": "High (Natural fiber)",
+                    "Standard Packaging": "Bundles of 100 meters",
+                    "Available Colors": "Natural Off-white"
+                }
+            },
+            "safety-net": {
+                title: "Safety Nets",
+                category: "Nets & Yarns",
+                catId: "safety",
+                image: "https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg",
+                desc: "Heavy-gauge mesh safety netting panels engineered to absorb debris and personnel falls.",
+                longDesc: "Begampur Safety Nets are manufactured from high-tenacity polypropylene and HDPE. They feature double-knot mesh cells with a thick border rope, built to absorb high impact drops on active construction sites in accordance with industrial safety norms.",
+                images: [
+                    "https://i.ibb.co/3mmKw5x6/Product-demonstration-of-product-2-K-202607301107.jpg",
+                    "https://i.ibb.co/VYdsLRxb/Professional-product-image-visua-2-K-202607301045.jpg"
+                ],
+                specs: {
+                    "Mesh Size": "25 mm to 100 mm",
+                    "Border Rope Diameter": "12 mm to 16 mm",
+                    "Impact Tolerance": "Tested up to 500 kg drop",
+                    "Material": "High Tenacity PP / HDPE",
+                    "Standard Dimensions": "Made-to-order panels (e.g., 10m x 5m)",
+                    "Available Colors": "Green, Blue"
+                }
+            },
+            "pp-export": {
+                title: "PP Rope (Export Grade)",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
+                desc: "Premium grade polypropylene rope manufactured with specialized anti-aging UV stabilizers.",
+                longDesc: "Our Export Grade Polypropylene Ropes are manufactured strictly in compliance with international B2B quality norms. Packaged securely to prevent sea-spray dampness and moisture, these ropes are heavily exported to Gulf countries for ship anchoring and cargo securing.",
+                images: [
+                    "https://i.ibb.co/MyfPPrFm/Product-visual-ropes-horizontally-2-K-202607301043.jpg",
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "6 mm to 44 mm",
+                    "Breaking Strength": "650 kg to 36,000 kg",
+                    "UV Protection": "Premium (Export Standard)",
+                    "Standard Packaging": "Coils of 220 meters, shrink-wrapped",
+                    "Available Colors": "Blue/Orange dual shade, Solid Yellow"
+                }
+            },
+            "pe-export": {
+                title: "PE Rope",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg",
+                desc: "Heavy-duty heat-resistant polyethylene ropes built to withstand dry, desert climates.",
+                longDesc: "Specifically extruded to resist intense dry-heat and desert environment temperatures, our PE Ropes undergo heat-set curing. They maintain constant tension and structural integrity without cracking, serving agricultural and freight networks.",
+                images: [
+                    "https://i.ibb.co/RpPPtD2D/Product-consistency-maintained-a-202607301442.jpg"
+                ],
+                specs: {
+                    "Diameter Range": "4 mm to 36 mm",
+                    "Breaking Strength": "320 kg to 24,000 kg",
+                    "Heat Tolerance": "Up to 55&deg;C constant exposure",
+                    "Standard Packaging": "Export coils, heat-shrink bundled",
+                    "Available Colors": "Green, Blue, Multi-shade assortments"
+                }
+            },
+            "fishing-twine": {
+                title: "Fishing Twines",
+                category: "Nets & Yarns",
+                catId: "safety",
+                image: "https://placehold.co/600x400/0b1e3d/ffffff?text=Fishing+Twines",
+                desc: "Premium-grade fishing twines for net repairs and commercial marine utility.",
+                longDesc: "Our Fishing Twines are precision-twisted polymer lines designed for marine gillnets and commercial fishing applications. Available in various size variations under strict B2B quality standards.",
+                images: [],
+                specs: {
+                    "Local Names": "Super 2/4 Laccha, Super 6/4 Laccha, Super 4/4 Laccha, and Mura/Muda Ropes",
+                    "Quality / Grades": "Prime grade, Off grade, and Recycled grade",
+                    "Sizes Available": "Various size variations",
+                    "Standard Packaging": "Roll type structure",
+                    "UV Resistance": "High"
+                }
+            },
+            "black-reprocessed": {
+                title: "Black Reprocessed Ropes",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://placehold.co/600x400/0b1e3d/ffffff?text=Black+Reprocessed+Ropes",
+                desc: "High-quality black reprocessed synthetic ropes for general utility.",
+                longDesc: "Our Black Reprocessed Ropes are manufactured from recycled high-density polymers, providing a cost-effective, high-strength cordage for industrial material securing, farming ties, and construction utility.",
+                images: [],
+                specs: {
+                    "Material": "Recycled Polypropylene / HDPE",
+                    "Diameter Range": "6 mm to 24 mm",
+                    "Knot Retention": "Excellent",
+                    "Standard Packaging": "Bundles / Coils"
+                }
+            },
+            "pp-gabion-nets": {
+                title: "PP Gabion Nets",
+                category: "Nets & Yarns",
+                catId: "safety",
+                image: "https://placehold.co/600x400/0b1e3d/ffffff?text=PP+Gabion+Nets",
+                desc: "Durable gabion netting specifically designed and used to protect river banks from corrosion.",
+                longDesc: "PP Gabion Nets are heavy-duty double-twisted synthetic mesh nets loaded with stones to prevent water erosion on soil slopes, riverbeds, and canal banks.",
+                images: [],
+                specs: {
+                    "Material": "High Tenacity Polypropylene",
+                    "Mesh Size": "80 mm x 100 mm",
+                    "Wire Diameter": "3.0 mm to 4.0 mm",
+                    "Corrosion Resistance": "100% Salt & Acid Proof"
+                }
+            },
+            "monofilament-rolls": {
+                title: "Monofilament Rolls",
+                category: "HDPE Monofilament",
+                catId: "hdpe",
+                image: "https://placehold.co/600x400/0b1e3d/ffffff?text=Monofilament+Rolls",
+                desc: "Vibrant, multi-colored monofilament rolls packaged for bulk use.",
+                longDesc: "Extruded from high-grade HDPE resin, our Monofilament Rolls feature bright, multi-colored strands wound on spools. They offer exceptional UV stability and are heavily used in agro-shading, packaging netting, and woven sacks.",
+                images: [],
+                specs: {
+                    "Material": "HDPE Monofilament",
+                    "Thickness": "0.15 mm to 0.40 mm",
+                    "Packaging": "Wound Rolls on Spools",
+                    "Colors": "Multi-shade assortments"
+                }
+            },
+            "pp-tapeline-rope": {
+                title: "PP Tapeline Rope",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "https://placehold.co/600x400/0b1e3d/ffffff?text=PP+Tapeline+Rope",
+                desc: "Yellow PP tapeline ropes securely packed in standard bundles.",
+                longDesc: "PP Tapeline Ropes are manufactured from flat split-film polypropylene tapes twisted into high-friction utility cordage. Features a bright yellow warning color, optimized for packaging, securing, and agricultural tying.",
+                images: [],
+                specs: {
+                    "Material": "Polypropylene Split-Film",
+                    "Diameter Range": "2 mm to 12 mm",
+                    "Standard Packaging": "Packed in standard bundles",
+                    "Available Colors": "Bright Yellow"
+                }
+            }
+        };
+
+        let adminIsDirty = false;
+
+        function markDirty() {
+            adminIsDirty = true;
+            document.getElementById('unsavedBadge').style.display = 'inline-block';
+        }
+
+        function markClean() {
+            adminIsDirty = false;
+            document.getElementById('unsavedBadge').style.display = 'none';
+        }
+
+        // --- AUTH LOGIC ---
+        function checkAuth() {
+            const isAuth = sessionStorage.getItem('admin_auth') === 'true';
+            const loginScreen = document.getElementById('login-screen');
+            const adminScreen = document.getElementById('admin-screen');
+            
+            if (isAuth) {
+                if (loginScreen) loginScreen.style.display = 'none';
+                if (adminScreen) adminScreen.style.display = 'block';
+                renderAll();
+            } else {
+                if (loginScreen) loginScreen.style.display = 'flex';
+                if (adminScreen) adminScreen.style.display = 'none';
+            }
+        }
+
+        function handleLogin() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const errDiv = document.getElementById('loginError');
+
+            if (user.toLowerCase() === 'makesedul' && pass.toUpperCase() === 'BRC') {
+                sessionStorage.setItem('admin_auth', 'true');
+                errDiv.style.display = 'none';
+                checkAuth();
+            } else {
+                errDiv.style.display = 'block';
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('admin_auth');
+            window.history.pushState(null, '', 'index_begampur.html');
+            checkUrlRoute();
+        }
+
+        function navigateToWebsite(event) {
+            if (event) event.preventDefault();
+            window.history.pushState(null, '', 'index_begampur.html');
+            checkUrlRoute();
+        }
+
+        function navigateToAdmin(event) {
+            if (event) event.preventDefault();
+            window.history.pushState(null, '', 'index_begampur.html?admin=true');
+            checkUrlRoute();
+        }
+
+        // --- RENDER CONTROLLERS ---
+        function renderAll() {
+            renderHeroVideos();
+            renderSolutions();
+            renderProducts();
+        }
+
+        // Section 1: Hero Videos
+        function renderHeroVideos() {
+            const container = document.getElementById('videoSlotsContainer');
+            container.innerHTML = '';
+            
+            adminHeroVideos.forEach((url, index) => {
+                const card = document.createElement('div');
+                card.className = 'adm-video-slot-card';
+                card.innerHTML = `
+                    <div class="adm-slot-index-badge">${index + 1}</div>
+                    <video class="adm-video-preview" src="${url}" muted autoplay loop playsinline></video>
+                    <div class="adm-video-slot-fields">
+                        <input type="text" class="adm-form-control" value="${url}" oninput="updateVideoUrl(${index}, this.value)" placeholder="Enter Video URL">
+                        <button class="adm-btn adm-btn-secondary" onclick="removeVideoSlot(${index})" style="padding: 0.75rem 1rem; border-color: #EF4444; color: #EF4444; background-color: transparent;">Delete</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function updateVideoUrl(index, val) {
+            adminHeroVideos[index] = val;
+            markDirty();
+            const previews = document.querySelectorAll('.adm-video-preview');
+            if (previews[index]) {
+                previews[index].src = val;
+            }
+        }
+
+        // Solutions
+        function renderSolutions() {
+            const grid = document.getElementById('solutionsGrid');
+            grid.innerHTML = '';
+
+            Object.keys(adminSolutionsData).forEach(key => {
+                const sol = adminSolutionsData[key];
+                const card = document.createElement('div');
+                card.className = 'adm-solution-card-item';
+                card.innerHTML = `
+                    <div class="adm-solution-thumbnail" style="background-image: url('${sol.coverImage || 'https://placehold.co/600x400/0b1e3d/ffffff'}');">
+                        <div class="adm-solution-thumbnail-overlay"></div>
+                        <div class="adm-solution-title-badge">${sol.title}</div>
+                    </div>
+                    <div class="adm-solution-card-body">
+                        <div class="adm-form-group" style="margin-bottom: 0;">
+                            <label class="adm-form-label">Cover Image URL</label>
+                            <input type="text" class="adm-form-control" value="${sol.coverImage || ''}" oninput="updateSolutionImage('${key}', this.value)" placeholder="Enter cover image URL">
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateSolutionImage(key, val) {
+            adminSolutionsData[key].coverImage = val;
+            markDirty();
+            const solCards = document.querySelectorAll('.adm-solution-card-item');
+            const index = Object.keys(adminSolutionsData).indexOf(key);
+            if (solCards[index]) {
+                const thumb = solCards[index].querySelector('.adm-solution-thumbnail');
+                if (thumb) thumb.style.backgroundImage = `url('${val || 'https://placehold.co/600x400/0b1e3d/ffffff'}')`;
+            }
+        }
+
+        // Product accordion lists
+        function renderProducts() {
+            const container = document.getElementById('productListContainer');
+            container.innerHTML = '';
+
+            Object.keys(adminProductsData).forEach(key => {
+                const prod = adminProductsData[key];
+                const isExpanded = (expandedProductSlug === key);
+
+                const card = document.createElement('div');
+                card.className = `adm-product-accordion-card ${isExpanded ? 'expanded' : ''}`;
+                card.innerHTML = `
+                    <div class="adm-product-accordion-header" onclick="toggleProductAccordion('${key}')">
+                        <div class="adm-product-header-left">
+                            <img class="adm-product-header-thumb" src="${prod.image || 'https://placehold.co/100x100/0b1e3d/ffffff?text=BRC'}" alt="Thumb">
+                            <div class="adm-product-header-title-block">
+                                <span class="adm-product-header-title">${prod.title || '(New Blank Product)'}</span>
+                                <span class="adm-product-header-category">${prod.category || 'Unassigned Category'}</span>
+                            </div>
+                        </div>
+                        <div class="adm-product-header-right">
+                            <button class="adm-btn adm-btn-secondary" onclick="deleteProduct('${key}', event)" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-color: #EF4444; color: #EF4444; background-color: transparent;">Delete</button>
+                            <span class="adm-accordion-arrow">&#9662;</span>
+                        </div>
+                    </div>
+                    
+                    <div class="adm-product-accordion-body">
+                        <div class="adm-product-grid-fields">
+                            <div class="adm-form-group">
+                                <label class="adm-form-label">Product Title</label>
+                                <input type="text" class="adm-form-control" value="${prod.title || ''}" oninput="updateProductField('${key}', 'title', this.value)" placeholder="Enter title">
+                            </div>
+                            <div class="adm-form-group">
+                                <label class="adm-form-label">Category</label>
+                                <select class="adm-form-control" onchange="updateProductCategory('${key}', this.value)">
+                                    <option value="HDPE Monofilament" ${prod.category === 'HDPE Monofilament' ? 'selected' : ''}>HDPE Monofilament</option>
+                                    <option value="Polypropylene" ${prod.category === 'Polypropylene' ? 'selected' : ''}>Polypropylene</option>
+                                    <option value="Cotton & Cords" ${prod.category === 'Cotton & Cords' ? 'selected' : ''}>Cotton & Cords</option>
+                                    <option value="Nets & Yarns" ${prod.category === 'Nets & Yarns' ? 'selected' : ''}>Nets & Yarns</option>
+                                </select>
+                            </div>
+                            <div class="adm-form-group adm-product-full-width-field">
+                                <label class="adm-form-label">Main Image URL</label>
+                                <input type="text" class="adm-form-control" value="${prod.image || ''}" oninput="updateProductField('${key}', 'image', this.value)" placeholder="Enter image URL">
+                            </div>
+                            <div class="adm-form-group adm-product-full-width-field">
+                                <label class="adm-form-label">Short Description</label>
+                                <input type="text" class="adm-form-control" value="${prod.desc || ''}" oninput="updateProductField('${key}', 'desc', this.value)" placeholder="Short descriptive summary">
+                            </div>
+                            <div class="adm-form-group adm-product-full-width-field">
+                                <label class="adm-form-label">Long Description</label>
+                                <textarea class="adm-form-control" rows="3" oninput="updateProductField('${key}', 'longDesc', this.value)" placeholder="Detailed explanation...">${prod.longDesc || ''}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Section -->
+                        <div class="adm-product-meta-subcontainer">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span class="adm-form-label" style="margin-bottom: 0;">Image Gallery URLs</span>
+                                <button class="adm-btn adm-btn-secondary" onclick="addGalleryItem('${key}')" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background-color: transparent;">+ Add Image</button>
+                            </div>
+                            <div id="galleryContainer-${key}">
+                                ${renderGalleryInputs(key, prod.images)}
+                            </div>
+                        </div>
+
+                        <!-- Specifications Section -->
+                        <div class="adm-product-meta-subcontainer">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span class="adm-form-label" style="margin-bottom: 0;">Specifications (Key-Value)</span>
+                                <button class="adm-btn adm-btn-secondary" onclick="addSpecRow('${key}')" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background-color: transparent;">+ Add Spec</button>
+                            </div>
+                            <div id="specsContainer-${key}">
+                                ${renderSpecRows(key, prod.specs)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleProductAccordion(key) {
+            expandedProductSlug = (expandedProductSlug === key) ? null : key;
+            renderProducts();
+        }
+
+        function updateProductField(key, field, val) {
+            adminProductsData[key][field] = val;
+            markDirty();
+            
+            const allCards = document.querySelectorAll('.adm-product-accordion-card');
+            const keys = Object.keys(adminProductsData);
+            const idx = keys.indexOf(key);
+            if (allCards[idx]) {
+                if (field === 'title') {
+                    allCards[idx].querySelector('.adm-product-header-title').innerText = val || '(New Blank Product)';
+                } else if (field === 'image') {
+                    allCards[idx].querySelector('.adm-product-header-thumb').src = val || 'https://placehold.co/100x100/0b1e3d/ffffff?text=BRC';
+                }
+            }
+        }
+
+        function updateProductCategory(key, val) {
+            adminProductsData[key].category = val;
+            
+            let catId = "pp";
+            if (val === 'HDPE Monofilament') catId = "hdpe";
+            else if (val === 'Cotton & Cords') catId = "cotton";
+            else if (val === 'Nets & Yarns') catId = "safety";
+            
+            adminProductsData[key].catId = catId;
+            markDirty();
+            
+            const allCards = document.querySelectorAll('.adm-product-accordion-card');
+            const idx = Object.keys(adminProductsData).indexOf(key);
+            if (allCards[idx]) {
+                allCards[idx].querySelector('.adm-product-header-category').innerText = val;
+            }
+        }
+
+        // Gallery
+        function renderGalleryInputs(key, imagesArr) {
+            if (!imagesArr || imagesArr.length === 0) {
+                return `<p style="font-size: 0.75rem; color: #6B7280; text-align: center; padding: 0.5rem 0;">No gallery images added yet.</p>`;
+            }
+            return imagesArr.map((url, idx) => `
+                <div class="adm-product-gallery-row">
+                    <input type="text" class="adm-form-control" value="${url}" oninput="updateGalleryItem('${key}', ${idx}, this.value)" placeholder="Image URL">
+                    <button class="adm-btn adm-btn-secondary" onclick="removeGalleryItem('${key}', ${idx})" style="padding: 0.5rem; border-color: #EF4444; color: #EF4444; background-color: transparent;">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function updateGalleryItem(key, idx, val) {
+            adminProductsData[key].images[idx] = val;
+            markDirty();
+        }
+
+        function addGalleryItem(key) {
+            if (!adminProductsData[key].images) adminProductsData[key].images = [];
+            adminProductsData[key].images.push("");
+            markDirty();
+            renderProducts();
+        }
+
+        function removeGalleryItem(key, idx) {
+            adminProductsData[key].images.splice(idx, 1);
+            markDirty();
+            renderProducts();
+        }
+
+        // Specs
+        function renderSpecRows(key, specsObj) {
+            if (!specsObj || Object.keys(specsObj).length === 0) {
+                return `<p style="font-size: 0.75rem; color: #6B7280; text-align: center; padding: 0.5rem 0;">No specifications added yet.</p>`;
+            }
+            return Object.keys(specsObj).map(specKey => `
+                <div class="adm-product-spec-row">
+                    <input type="text" class="adm-form-control" value="${specKey}" onchange="renameSpecKey('${key}', '${specKey}', this.value)" placeholder="Spec Name" style="font-weight: 700;">
+                    <input type="text" class="adm-form-control" value="${specsObj[specKey]}" oninput="updateSpecValue('${key}', '${specKey}', this.value)" placeholder="Spec Value">
+                    <button class="adm-btn adm-btn-secondary" onclick="removeSpecRow('${key}', '${specKey}')" style="padding: 0.5rem; border-color: #EF4444; color: #EF4444; background-color: transparent;">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function updateSpecValue(key, specKey, val) {
+            adminProductsData[key].specs[specKey] = val;
+            markDirty();
+        }
+
+        function renameSpecKey(key, oldSpecKey, newSpecKey) {
+            if (!newSpecKey || newSpecKey.trim() === "" || oldSpecKey === newSpecKey) return;
+            const val = adminProductsData[key].specs[oldSpecKey];
+            delete adminProductsData[key].specs[oldSpecKey];
+            adminProductsData[key].specs[newSpecKey] = val;
+            markDirty();
+            renderProducts();
+        }
+
+        function addSpecRow(key) {
+            if (!adminProductsData[key].specs) adminProductsData[key].specs = {};
+            let defaultSpecKey = "New Spec";
+            let counter = 1;
+            while (adminProductsData[key].specs[defaultSpecKey]) {
+                defaultSpecKey = `New Spec (${counter})`;
+                counter++;
+            }
+            adminProductsData[key].specs[defaultSpecKey] = "";
+            markDirty();
+            renderProducts();
+        }
+
+        function removeSpecRow(key, specKey) {
+            delete adminProductsData[key].specs[specKey];
+            markDirty();
+            renderProducts();
+        }
+
+        // Add/Delete Product
+        function addNewProduct() {
+            let slugBase = "new-product";
+            let slug = slugBase;
+            let counter = 1;
+            while (adminProductsData[slug]) {
+                slug = `${slugBase}-${counter}`;
+                counter++;
+            }
+
+            adminProductsData[slug] = {
+                title: "New Blank Product",
+                category: "Polypropylene",
+                catId: "pp",
+                image: "",
+                desc: "Description summary here",
+                longDesc: "Full specifications and technical characteristics here",
+                images: [],
+                specs: {
+                    "Diameter Range": "4 mm to 24 mm",
+                    "UV Resistance": "High"
+                }
+            };
+            
+            expandedProductSlug = slug;
+            markDirty();
+            renderProducts();
+            
+            setTimeout(() => {
+                const el = document.getElementById('productListContainer').lastChild;
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function deleteProduct(key, event) {
+            event.stopPropagation();
+            if (confirm(`Are you sure you want to permanently delete "${adminProductsData[key].title || 'this product'}"?`)) {
+                delete adminProductsData[key];
+                if (expandedProductSlug === key) expandedProductSlug = null;
+                markDirty();
+                renderProducts();
+            }
+        }
+
+        // --- EXPORT & SERIALIZE ---
+        function generateExportCode() {
+            function serializeObject(obj, indent = 12) {
+                const spaces = " ".repeat(indent);
+                const subSpaces = " ".repeat(indent - 4);
+                
+                if (Array.isArray(obj)) {
+                    if (obj.length === 0) return "[]";
+                    const serializedItems = obj.map(item => `"${item.replace(/"/g, '\\"')}"`).join(`,\n${spaces}`);
+                    return `[\n${spaces}${serializedItems}\n${subSpaces}]`;
+                }
+                
+                if (typeof obj === 'object' && obj !== null) {
+                    const keys = Object.keys(obj);
+                    if (keys.length === 0) return "{}";
+                    const entries = keys.map(k => {
+                        const val = obj[k];
+                        let formattedVal;
+                        if (typeof val === 'string') {
+                            formattedVal = `"${val.replace(/"/g, '\\\"').replace(/\n/g, '\\\\n')}"`;
+                        } else if (Array.isArray(val) || typeof val === 'object') {
+                            formattedVal = serializeObject(val, indent + 4);
+                        } else {
+                            formattedVal = val;
+                        }
+                        return `"${k}": ${formattedVal}`;
+                    });
+                    return `{\n${spaces}${entries.join(`,\n${spaces}`)}\n${subSpaces}}`;
+                }
+                return obj;
+            }
+
+            const productsKeys = Object.keys(adminProductsData);
+            const serializedProducts = productsKeys.map(k => {
+                const p = productsData[k];
+                return `            "${k}": {
+                title: "${p.title.replace(/"/g, '\\"')}",
+                category: "${p.category}",
+                catId: "${p.catId}",
+                image: "${p.image}",
+                desc: "${p.desc.replace(/"/g, '\\"')}",
+                longDesc: "${p.longDesc.replace(/"/g, '\\\"').replace(/\n/g, '\\n')}",
+                images: ${serializeObject(p.images, 20)},
+                specs: ${serializeObject(p.specs, 20)}
+            }`;
+            }).join(',\n');
+
+            const solutionsKeys = Object.keys(adminSolutionsData);
+            const serializedSolutions = solutionsKeys.map(k => {
+                const s = solutionsData[k];
+                return `            "${k}": {
+                title: "${s.title}",
+                tagline: "${s.tagline.replace(/"/g, '\\"')}",
+                coverImage: "${s.coverImage}",
+                description: "${s.description.replace(/"/g, '\\"')}",
+                products: ${JSON.stringify(s.products)}
+            }`;
+            }).join(',\n');
+
+            const activeFirstVideo = `                    <video class="hero-video-slide active" autoplay muted playsinline preload="auto" src="${adminHeroVideos[0]}"></video>\n` + adminHeroVideos.slice(1).map(url => `                    <video class="hero-video-slide" muted playsinline preload="auto" src="${url}"></video>`).join('\n');
+
+            return `/* 
+==================================================================
+   BEGAMPUR ROPE CENTER — UPDATED WEB CONFIGURATION
+   Generated on: ${new Date().toLocaleString()}
+==================================================================
+*/
+
+// --- 1. HERO VIDEO TAGS BLOCK ---
+/*
+<div style="position: absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; z-index:1; background-color: #000000;">
+${activeFirstVideo}
+</div>
+*/
+
+// --- 2. PRODUCTS DATA BLOCK ---
+const productsData = {
+${serializedProducts}
+};
+
+// --- 3. SOLUTIONS DATA BLOCK ---
+const solutionsData = {
+${serializedSolutions}
+};
+`;
+        }
+
+        function exportData() {
+            const exportText = generateExportCode();
+            const blob = new Blob([exportText], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'updated-site-data.js';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            markClean();
+            alert("Export compiled successfully! 'updated-site-data.js' has been downloaded.");
+        }
+
+        function copyToClipboard() {
+            const exportText = generateExportCode();
+            navigator.clipboard.writeText(exportText).then(() => {
+                markClean();
+                alert("Updated JS configuration copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy text: " + err);
+            });
+        }
+
+        
+        // URL Router for Admin view toggling
+        function checkUrlRoute() {
+            const isQueryAdmin = window.location.search.includes('admin=true');
+            const isHashAdmin = window.location.hash === '#admin';
+            
+            const mainSite = document.getElementById('main-site-wrapper');
+            const adminPanel = document.getElementById('admin-panel-wrapper');
+            
+            if (isQueryAdmin || isHashAdmin) {
+                if (mainSite) mainSite.style.display = 'none';
+                if (adminPanel) adminPanel.style.display = 'block';
+                checkAuth();
+            } else {
+                if (mainSite) mainSite.style.display = 'block';
+                if (adminPanel) adminPanel.style.display = 'none';
+            }
+        }
+        
+        window.addEventListener('popstate', checkUrlRoute);
+        window.addEventListener('hashchange', checkUrlRoute);
+        
+        // Hook checkUrlRoute immediately on script evaluation
+        checkUrlRoute();
+        </script>
+    </div>
+
+
+
 </body>
 </html>
